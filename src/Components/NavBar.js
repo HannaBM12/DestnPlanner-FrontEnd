@@ -1,17 +1,26 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { Checkbox } from 'semantic-ui-react'
+import Search from './Search'
 
 function NavBar() {
   
   return (
-    <header>
-      
-        <Link to="/">Home</Link>
-             
-        <Link to="/hotels">Hotels</Link>
-                 
-                 
-    </header>
+      <>
+        <header>
+            <Link to="/">Home</Link>
+        
+        <div>
+                
+        </div>
+         <div>
+            <Link to="/hotels">Hotels</Link> 
+            <span></span><span></span>   
+            <Checkbox toggle/>
+            
+        </div>        
+        </header>
+        </>
   );
 }
 

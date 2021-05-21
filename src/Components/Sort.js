@@ -1,5 +1,5 @@
 import React from "react";
-import { Input, Menu, Select} from 'semantic-ui-react'
+import { Input, Rating, Menu, Select} from 'semantic-ui-react'
 
 function Sort({setSortPrice, setSortRating}) {
 
@@ -34,6 +34,7 @@ function Sort({setSortPrice, setSortRating}) {
     <div>
 
     <Menu text vertical>
+    <label htmlFor="sort"><h5><strong>Sort By:</strong></h5></label>
         <Menu.Item>
             <label htmlFor="sort"><p>Price</p></label>
             <Select name="filter" onChange={HandleSortPrice} options={priceOptions}/>

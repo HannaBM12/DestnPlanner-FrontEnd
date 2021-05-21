@@ -11,7 +11,7 @@ function HotelList({hotel}) {
     return (
      
         <Card  color = 'violet'>
-            <Card.Header>{name}</Card.Header><br></br>
+            <Card.Header><strong><h5>{name}</h5></strong></Card.Header><br></br>
             <Image className ='card-img' src={image}  wrapped ui={false} size='large' />
     
             <Card.Content>

@@ -2,11 +2,13 @@ import React, { useEffect, useState }  from 'react';
 import { Input, Menu, Card, Button, Divider, Form, Dropdown, Grid, Segment } from 'semantic-ui-react'
 import HotelList from './HotelList'
 import Sort from './Sort.js'
+import Search from './Search.js'
 
 function HotelContainer() {
     const [hotels, setHotels] = useState([])
     const [sortRating, setSortRating] = useState('All')
     const [sortPrice, setSortPrice] = useState('All')
+    const [searchItem, setSearchItem] = useState('')
     
     useEffect(()=> {
         fetch('http://localhost:3000/hotels')
@@ -17,7 +19,10 @@ function HotelContainer() {
 
     }, [])
 
-        const ratingSort = hotels.filter(hotel =>{
+        const searchedItem = hotels.filter(hotel =>
+        hotel.name.toLowerCase().includes(searchItem.toLowerCase()))
+
+        const ratingSort = searchedItem.filter(hotel =>{
             if(sortRating === 'All'){
                 return hotel
             } else{
@@ -31,20 +36,28 @@ function HotelContainer() {
             } else {
                 return hotel1.price - hotel2.price
             }
-
+            
         })
-
+        
         const listHotels= priceSort.map(hotel =>
             < HotelList key={hotel.id} hotel={hotel}/>)
-
-
-    return (
-        <>
+            
+            
+            return (
+                <>
         <div className="sidebar">
+        <br></br> <br></br><br></br><br></br>
         <Sort setSortPrice={setSortPrice} setSortRating={setSortRating}/>
-          
         </div>
+
+
         <div>
+       
+        </div>        
+    
+        <div>
+            <Search  searchItem={searchItem} setSearchItem={setSearchItem}/><br></br><br></br>
+         
             <Card.Group itemsPerRow={3}>
                 {listHotels}
             </Card.Group>
