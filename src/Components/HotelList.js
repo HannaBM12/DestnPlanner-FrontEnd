@@ -6,7 +6,7 @@ import HotelDetail from './HotelDetail';
 
 function HotelList({hotel, night }) {
 
-    console.log(hotel)
+    // console.log(hotel)
   
     const {id, name, image, location, address, price, avgScore } = hotel
     
@@ -25,7 +25,7 @@ function HotelList({hotel, night }) {
              </Card.Meta><br></br>
 
             <Card.Description>
-                <strong>Rating: {avgScore}</strong> <br></br>
+                <strong> {avgScore} out of 5</strong> <br></br>
                 <strong>Price: </strong> ${price}<span></span>
                 <Link  to={`/hotels/${id}`}><Button floated='right' color='teal'><p>Book</p></Button> </Link> <span></span>
             </Card.Description>

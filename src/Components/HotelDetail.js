@@ -4,11 +4,16 @@ import { useParams } from 'react-router-dom'
 import { useHistory } from 'react-router-dom'
 import { Form, Image, Container, Button, Label, TextArea, Grid } from 'semantic-ui-react'
 import ReservationForm from "./ReservationForm";
+import ReviewForm from './ReviewForm'
 
 function HotelDetail() {
 
   const[hotelDetail, setHotelDetail] = useState(null)
   const [isLoaded, setIsLoaded] = useState(false);
+  const [title, setTitle] = useState('')
+  const [description, setDescription] = useState('')
+  const [score, setScore] = useState('')
+  const [hotelReview, setHotelReview] = useState([])
 
     const [dateIn, setDateIn] = useState('')
     const [dateOut, setDateOut] = useState('')
@@ -32,6 +37,7 @@ function HotelDetail() {
 
     const { name, image, propid, price, avgScore, address, neighbourhood, distance } = hotelDetail
 
+    const avgRoundedScore = Math.floor(avgScore*100)/100
     const travelerName = "Hanna Mulugeta"
     const travelerId = 1
     const total = price * room * night
@@ -50,7 +56,7 @@ function HotelDetail() {
           total
         }
 
-        console.log(bookingObj)
+        // console.log(bookingObj)
         
         fetch('http://localhost:3000/reservations', {
           method: 'POST',
@@ -65,6 +71,46 @@ function HotelDetail() {
           history.push('/reservations')
         })
     }
+
+
+    
+    function handleReviewSubmit(e){
+      e.preventDefault()
+      
+      const reviewObj = {
+        title,
+        description,
+        score,
+        hotel_id: id,
+        traveler_id: travelerId
+      }
+
+      fetch('http://localhost:3000/reviews', {
+        method: "POST",
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(reviewObj)
+      })
+      .then(res => res.json())
+      .then(reviewData => {
+        
+        setHotelReview(reviewData)
+        setTitle('')
+        setDescription('')
+        setScore(0)
+      })
+      
+    }
+    
+  function setRating(score, e){
+        e.preventDefault()
+        setScore(score)
+        console.log(score)
+        // setHotelReview([...hotelReview, score])
+    }
+
+    
 
   return (
     <>
@@ -83,7 +129,8 @@ function HotelDetail() {
                         <Grid.Column width={6}><br></br>
                           <div>
                           <h3>{name}</h3> <br></br>
-                          <p><strong>Rating:</strong> {avgScore} Star</p>
+                          <p><strong># User Reviews</strong> </p>
+                          <p><strong>{avgRoundedScore} out of 5</strong> </p>
                           <p><strong>Address:-</strong>{address}</p>
                           <p><strong>Distance to City Center:-</strong> {distance}</p>
                           <p><strong>Neighborhood:-</strong> {neighbourhood}</p>
@@ -94,9 +141,14 @@ function HotelDetail() {
                     </Grid.Row>
                 
 
-                  <Grid.Column width={12}><br></br>
+                  <Grid.Column width={8}><br></br>
                       <ReservationForm dateIn={dateIn} setDateIn={setDateIn} dateOut={dateOut} setDateOut={setDateOut} 
                     night={night} setNight={setNight} room={room} setRoom={setRoom} onHandleSubmit={handleSubmit}/>
+
+                  </Grid.Column>
+                  <Grid.Column width={8}><br></br>
+                      <ReviewForm setRating={setRating} onHandleSubmit={handleReviewSubmit} score={score} setScore={setScore} setDescription={setDescription} setTitle={setTitle} name={name} title={title} description={description} />
+
                   </Grid.Column>
                   </Grid>
               </div>

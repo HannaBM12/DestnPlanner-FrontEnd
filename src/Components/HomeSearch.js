@@ -5,8 +5,8 @@ import HotelContainer from './HotelContainer';
 import HotelDetail from './HotelDetail';
 
 
-function HomeSearch({destination, onHandleDestination, checkIn, onHandleCheckIn, checkOut, onHandleCheckOut, onHandleSubmit}){ 
-    //  night, setNight, room, setRoom}) {
+function HomeSearch({destination, onHandleDestination, checkIn, onHandleCheckIn, checkOut, onHandleCheckOut, onHandleSubmit, night, setNight, room, setRoom}){ 
+    
          
        
     const history = useHistory()
@@ -25,10 +25,10 @@ function HomeSearch({destination, onHandleDestination, checkIn, onHandleCheckIn,
                       <input type="date" name="date" min="2021-05-19" max="2022-12-31" placeholder="Check-In"value={checkIn} onChange={onHandleCheckIn}/><br></br>
                   <label> Check-Out Date:</label>
                       <input type="date" name="date" min="2021-05-19" max="2022-12-31" placeholder="Check-Out"value={checkOut} onChange={onHandleCheckOut}/><br></br>
-                  {/* <label>Nights:</label>
+                  <label>Nights:</label>
                       <input type="number" name="night" min="1" placeholder="nights" value={night} onChange={(e)=>setNight(parseInt((e.target.value)))} /><br></br>
                   <label>No. Rooms:</label>
-                      <input type="number" name="room" min="1" placeholder="rooms" value={room} onChange={(e)=>setRoom(parseInt((e.target.value)))} /><br></br> */}
+                      <input type="number" name="room" min="1" placeholder="rooms" value={room} onChange={(e)=>setRoom(parseInt((e.target.value)))} /><br></br>
                                         
                   <Button color='teal'><h3>Search Hotels</h3></Button>
               </Form>

@@ -12,11 +12,15 @@ function App() {
         <NavBar />
         <main>
             <Switch>
-                <Route exact path="/">
-                    <h1><strong>Welcome to Destination Planner</strong></h1><br></br>
-                    <Home />
+                <Route path="/signup">
+                    <SignUp/>
                 </Route>
-
+                <Route path="/login">
+                    <Login/>
+                </Route>
+                <Route path="/profile">
+                    <Profile/>
+                </Route>
                 <Route exact path="/hotels">
                     <HotelContainer/>
                 </Route>
@@ -25,6 +29,9 @@ function App() {
                 </Route>
                 <Route exact path="/reservations">
                     <ReservationContainer />
+                </Route>
+                <Route exact path="/">
+                    <Home />
                 </Route>
             </Switch>
         </main>

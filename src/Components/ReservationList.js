@@ -6,7 +6,7 @@ import HotelDetail from './HotelDetail';
 import ReservationForm from './ReservationForm'
 
 
-function ReservationList({id, hotelName, checkIn, checkOut, noOfNight, noOfRoom, total, image, price, onRemoveReservation, onHandleUpdate}){ 
+function ReservationList({id, hotelName, avgScore, checkIn, checkOut, noOfNight, noOfRoom, total, image, price, onRemoveReservation, onHandleUpdate}){ 
    
     const [isClicked, setIsClicked] = useState(true)
     const [newCheckIn, setNewCheckIn] = useState(checkIn)
@@ -68,6 +68,7 @@ function ReservationList({id, hotelName, checkIn, checkOut, noOfNight, noOfRoom,
        <div >
          
             <p>Hotel:- {hotelName}</p>
+            <p>{avgScore} out of 5</p>
             <p>Check-In:- {checkIn}</p>
             <p>Check-Out:- {checkOut}</p>
             <p>No Of Night:- {noOfNight}</p>

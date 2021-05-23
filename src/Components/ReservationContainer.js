@@ -19,7 +19,7 @@ function ReservationContainer() {
         })
     }, [])
 
-    // console.log(reservations)
+    // console.log(reservations[0].hotel)
     if (!isLoaded) return <h2>Loading...</h2>
 
 
@@ -34,7 +34,7 @@ function ReservationContainer() {
         reservation.id === updatedRes.id ? updatedRes : reservation)
         setReservations(afterUpdate)
     }
-
+    
    const hotelReservation = reservations.map(res=>
         <ReservationList key={res.id} {...res} onRemoveReservation={removeReservation} onHandleUpdate={handleUpdateReservation}/> )
 
