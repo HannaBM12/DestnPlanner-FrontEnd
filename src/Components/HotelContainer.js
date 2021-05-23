@@ -4,16 +4,21 @@ import HotelList from './HotelList'
 import Sort from './Sort.js'
 import Search from './Search.js'
 
-function HotelContainer() {
+function HotelContainer({destination}) {
     const [hotels, setHotels] = useState([])
     const [sortRating, setSortRating] = useState('All')
     const [sortPrice, setSortPrice] = useState('All')
     const [searchItem, setSearchItem] = useState('')
     
+  
+    console.log(destination)
+   
+
     useEffect(()=> {
         fetch('http://localhost:3000/hotels')
         .then(res => res.json())
         .then(hotelData => {
+            // console.log(hotelData)
             setHotels(hotelData)
         })
 
@@ -40,31 +45,28 @@ function HotelContainer() {
         })
         
         const listHotels= priceSort.map(hotel =>
-            < HotelList key={hotel.id} hotel={hotel}/>)
-            
+            < HotelList key={hotel.id} hotel={hotel} />)
             
             return (
                 <>
-        <div className="sidebar">
-        <br></br> <br></br><br></br><br></br>
-        <Sort setSortPrice={setSortPrice} setSortRating={setSortRating}/>
-        </div>
+                <div className="sidebar">
+                    <br></br> <br></br><br></br><br></br>
+                    <Sort setSortPrice={setSortPrice} setSortRating={setSortRating}/>
+                </div>
 
+            
+                <div>
+                    <Search  searchItem={searchItem} setSearchItem={setSearchItem}/><br></br><br></br>
+                
+                    <Card.Group itemsPerRow={3}>
+                        {listHotels}
+                    </Card.Group>
 
-        <div>
-       
-        </div>        
-    
-        <div>
-            <Search  searchItem={searchItem} setSearchItem={setSearchItem}/><br></br><br></br>
-         
-            <Card.Group itemsPerRow={3}>
-                {listHotels}
-            </Card.Group>
-
-        </div>
-        </>
+                </div>
+              
+                
+            </>
     );
-  }
+}
   
   export default HotelContainer;

@@ -3,6 +3,8 @@ import { Route, Switch } from "react-router-dom";
 import NavBar from "./NavBar";
 import Home from "./Home";
 import HotelContainer from "./HotelContainer"
+import HotelDetail from "./HotelDetail";
+import ReservationContainer from "./ReservationContainer"
 
 function App() {
   return (
@@ -15,8 +17,14 @@ function App() {
                     <Home />
                 </Route>
 
-                <Route path="/hotels">
+                <Route exact path="/hotels">
                     <HotelContainer/>
+                </Route>
+                <Route exact path="/hotels/:id">
+                    <HotelDetail />
+                </Route>
+                <Route exact path="/reservations">
+                    <ReservationContainer />
                 </Route>
             </Switch>
         </main>

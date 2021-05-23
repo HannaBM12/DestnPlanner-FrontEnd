@@ -15,6 +15,7 @@ function NavBar() {
         </div>
          <div>
             <Link to="/hotels">Hotels</Link> 
+            <Link to="/reservations">Reservation</Link>
             <span></span><span></span>   
             <Checkbox toggle/>
             
