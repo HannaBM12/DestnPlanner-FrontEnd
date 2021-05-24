@@ -73,7 +73,7 @@ function ReservationList({id, hotelName, avgScore, checkIn, checkOut, noOfNight,
             <p>Check-Out:- {checkOut}</p>
             <p>No Of Night:- {noOfNight}</p>
             <p>No Of Rooms:- {noOfRoom}</p>
-            <p>total:- S{total}</p>
+            <p>total:- ${total}</p>
 
             {/* {link ? (
               <p>

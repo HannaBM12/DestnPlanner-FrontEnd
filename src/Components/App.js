@@ -1,25 +1,61 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Route, Switch } from "react-router-dom";
 import NavBar from "./NavBar";
 import Home from "./Home";
-import HotelContainer from "./HotelContainer"
+import HotelContainer from "./HotelContainer";
 import HotelDetail from "./HotelDetail";
-import ReservationContainer from "./ReservationContainer"
+import ReservationContainer from "./ReservationContainer";
+import SignUp from "./SignUp";
+import Login from "./Login";
+import Profile from "./Profile";
+
 
 function App() {
+    const [traveler, setTraveler] = useState(null)
+
+    console.log(traveler)
+
+    const token = localStorage.getItem("token")
+    useEffect(()=> {
+        fetch('http://localhost:3000/me', {
+        headers: {
+                "Authorization": `Bearer ${token}`
+              },
+        })
+        .then(res => {
+            return res.json().then(data => {
+                if(res.ok){
+                    return data
+                } else{
+                    throw data
+                }
+            })
+        })
+
+        .then( traveler => {
+            setTraveler(traveler)
+        })
+        .catch()
+    }, [])
+
   return (
       <>
-        <NavBar />
+        <NavBar traveler={traveler} setTraveler={setTraveler}/>
         <main>
             <Switch>
                 <Route path="/signup">
-                    <SignUp/>
+                    <SignUp setTraveler={setTraveler} />
                 </Route>
                 <Route path="/login">
-                    <Login/>
+                    <Login setTraveler={setTraveler}/>
                 </Route>
                 <Route path="/profile">
-                    <Profile/>
+                    {traveler ? (
+                        <Profile traveler={traveler} setTraveler={setTraveler}/>
+                    ) : (
+                        <h2>You must login to see this page!</h2>
+                    )}
+                    
                 </Route>
                 <Route exact path="/hotels">
                     <HotelContainer/>

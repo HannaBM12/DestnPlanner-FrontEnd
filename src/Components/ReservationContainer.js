@@ -13,7 +13,7 @@ function ReservationContainer() {
         fetch('http://localhost:3000/travelers')
         .then(res => res.json())
         .then(travelerData => {
-          console.log(travelerData[0].reservations)
+          // console.log(travelerData[0].reservations)
             setReservations(travelerData[0].reservations)
             setIsLoaded(true)
         })

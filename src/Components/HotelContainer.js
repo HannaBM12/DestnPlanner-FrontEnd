@@ -50,7 +50,6 @@ function HotelContainer({destination}) {
             return (
                 <>
                 <div className="sidebar">
-                    <br></br> <br></br><br></br><br></br>
                     <Sort setSortPrice={setSortPrice} setSortRating={setSortRating}/>
                 </div>
 

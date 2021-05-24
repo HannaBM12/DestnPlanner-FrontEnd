@@ -39,21 +39,20 @@ function Home() {
     }  
     // console.log(destination)
     // <HotelContainer destination={destination}/>
+    const classNames = require('classnames');
     return (
-        // <>
-        // <div>
-        //     <h1><strong>Welcome to Destination Planner</strong></h1>         
-            
-        // </div>
-       
-        <div>   
+        <>
+        <div className={ classNames('bg_image', 'main-home')}> 
+            <h1><strong>Welcome to Destination Planner</strong></h1>
+        </div>
+         <div>   
 
         <HomeSearch destination = {destination} onHandleDestination={handleDestination} checkIn={checkIn} onHandleCheckIn={handleCheckIn} checkOut={checkOut} 
            onHandleCheckOut={handleCheckOut} onHandleSubmit={handleSubmit} night={night} setNight={setNight} room={room} setRoom={setRoom}/>
           
         </div>    
-        
-        // </>
+         
+        </>
     );
   }
   
