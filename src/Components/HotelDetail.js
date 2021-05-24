@@ -5,6 +5,7 @@ import { useHistory } from 'react-router-dom'
 import { Form, Image, Container, Button, Label, TextArea, Grid } from 'semantic-ui-react'
 import ReservationForm from "./ReservationForm";
 import ReviewForm from './ReviewForm'
+import GuestReviews from "./GuestReviews";
 
 function HotelDetail({traveler}) {
 
@@ -103,24 +104,28 @@ function HotelDetail({traveler}) {
       })
       .then(res => res.json())
       .then(reviewData => {
-        
-        setHotelReview(reviewData)
+        console.log(reviewData)
+        // const review = hotelDetial.reviews
+        setHotelReview([...hotelDetail.reviews, reviewData])
         setTitle('')
         setDescription('')
         setScore(0)
       })
       
     }
-    
-  function setRating(score, e){
-        e.preventDefault()
-        setScore(score)
-        console.log(score)
-        // setHotelReview([...hotelReview, score])
+
+    function setRating(score, e){
+      e.preventDefault()
+      setScore(score)
+      console.log(score)
+      // setHotelReview([...hotelReview, score])
     }
-
+    console.log(hotelDetail.reviews)
+    console.log(hotelReview)
+    // console.log(hotelReview.hotel.reviews)
+    const guestReviews = hotelReview.map(review =>
+      <GuestReviews key={review.id} review={review} />)
     
-
   return (
     <>
         <div className="sidebar">
@@ -157,6 +162,14 @@ function HotelDetail({traveler}) {
                   </Grid.Column>
                   <Grid.Column width={8}><br></br>
                       <ReviewForm setRating={setRating} onHandleSubmit={handleReviewSubmit} score={score} setScore={setScore} setDescription={setDescription} setTitle={setTitle} name={name} title={title} description={description} />
+
+                  </Grid.Column>
+
+                  <Grid.Column width={8}><br></br>
+                      <h5><strong>Guest Reviews</strong></h5>
+                      <ul>
+                       {guestReviews}
+                      </ul>
 
                   </Grid.Column>
                   </Grid>
