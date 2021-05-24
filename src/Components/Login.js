@@ -39,7 +39,7 @@ function Login({ setTraveler}) {
         const { traveler, token } = data
         localStorage.setItem("token", token);
             setTraveler(traveler)
-            history.push('/')
+            history.push('/hotels')
         })
         .catch(error => {
             setErrors(error.errors)

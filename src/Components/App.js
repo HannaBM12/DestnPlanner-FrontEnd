@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, useHistory } from "react-router-dom";
 import NavBar from "./NavBar";
 import Home from "./Home";
 import HotelContainer from "./HotelContainer";
@@ -14,6 +14,7 @@ function App() {
     const [traveler, setTraveler] = useState(null)
 
     console.log(traveler)
+    const history = useHistory()
 
     const token = localStorage.getItem("token")
     useEffect(()=> {
@@ -53,7 +54,9 @@ function App() {
                     {traveler ? (
                         <Profile traveler={traveler} setTraveler={setTraveler}/>
                     ) : (
+                    
                         <h2>You must login to see this page!</h2>
+                        
                     )}
                     
                 </Route>
@@ -61,10 +64,14 @@ function App() {
                     <HotelContainer/>
                 </Route>
                 <Route exact path="/hotels/:id">
-                    <HotelDetail traveler={traveler}/>
+                    {traveler ? (
+                        <HotelDetail traveler={traveler}/>
+                    ) : (
+                        <h2>Please login/SingUp, to see this page!</h2>
+                    )}
                 </Route>
                 <Route exact path="/reservations">
-                    <ReservationContainer traveler={traveler} />
+                        <ReservationContainer traveler={traveler} />
                 </Route>
                 <Route exact path="/">
                     <Home />
