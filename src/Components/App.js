@@ -61,10 +61,10 @@ function App() {
                     <HotelContainer/>
                 </Route>
                 <Route exact path="/hotels/:id">
-                    <HotelDetail />
+                    <HotelDetail traveler={traveler}/>
                 </Route>
                 <Route exact path="/reservations">
-                    <ReservationContainer />
+                    <ReservationContainer traveler={traveler} />
                 </Route>
                 <Route exact path="/">
                     <Home />

@@ -4,14 +4,11 @@ import HotelList from './HotelList'
 import Sort from './Sort.js'
 import Search from './Search.js'
 
-function HotelContainer({destination}) {
+function HotelContainer() {
     const [hotels, setHotels] = useState([])
     const [sortRating, setSortRating] = useState('All')
     const [sortPrice, setSortPrice] = useState('All')
     const [searchItem, setSearchItem] = useState('')
-    
-  
-    console.log(destination)
    
 
     useEffect(()=> {

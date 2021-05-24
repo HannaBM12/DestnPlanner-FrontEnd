@@ -33,11 +33,12 @@ function ReservationList({id, hotelName, avgScore, checkIn, checkOut, noOfNight,
         }
         console.log(newRes)
                
-       
+        const token = localStorage.getItem("token")
         fetch(`http://localhost:3000/reservations/${id}`,{
             method: "PATCH",
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                    "Authorization": `Bearer ${token}`
             },
             body: JSON.stringify(newRes)
         })
@@ -52,8 +53,12 @@ function ReservationList({id, hotelName, avgScore, checkIn, checkOut, noOfNight,
     function deleteReservation(){
         onRemoveReservation(id)
 
+        const token = localStorage.getItem("token")
         fetch(`http://localhost:3000/reservations/${id}`, {
-            method: "DELETE"
+            method: "DELETE",
+            headers: {
+                "Authorization": `Bearer ${token}`
+              },
         })
         .then(res => res.json())
         

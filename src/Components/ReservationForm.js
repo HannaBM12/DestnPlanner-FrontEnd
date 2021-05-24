@@ -11,7 +11,7 @@ function Reservation({dateIn, setDateIn, dateOut, setDateOut, night, setNight, r
     return (
         <>
               <Form  onSubmit={onHandleSubmit}>
-                                    <label >Check-In Date:</label>
+                    <label >Check-In Date:</label>
                     <input type="date" name="date" min="2021-05-19" max="2022-12-31" placeholder="Check-In"value={dateIn} onChange={(e)=>setDateIn(e.target.value)}/><br></br>
                     <label> Check-Out Date:</label>
                     <input type="date" name="date" min="2021-05-19" max="2022-12-31" placeholder="Check-Out"value={dateOut} onChange={(e)=>setDateOut(e.target.value)}/><br></br>

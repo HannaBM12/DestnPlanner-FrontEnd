@@ -3,18 +3,24 @@ import ReservationList from "./ReservationList";
 
 
 
-function ReservationContainer() {
+function ReservationContainer({traveler}) {
 
     const[reservations, setReservations] = useState([])
     const [isLoaded, setIsLoaded] = useState(false)
 
+
+    const token = localStorage.getItem("token")
     useEffect(()=>{
 
-        fetch('http://localhost:3000/travelers')
+        fetch(`http://localhost:3000/travelers/${traveler.id}`, {
+          headers: {
+            "Authorization": `Bearer ${token}`
+          },
+        })
         .then(res => res.json())
         .then(travelerData => {
-          // console.log(travelerData[0].reservations)
-            setReservations(travelerData[0].reservations)
+          console.log(travelerData)
+            setReservations(travelerData.reservations)
             setIsLoaded(true)
         })
     }, [])
@@ -44,7 +50,7 @@ function ReservationContainer() {
   return (
     <>
         <div className="sidebar">
-                  <br></br> <br></br><br></br><br></br>
+                <p></p>
          
         </div>
       

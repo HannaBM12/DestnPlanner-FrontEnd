@@ -1,14 +1,16 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { Checkbox } from 'semantic-ui-react'
 import Search from './Search'
 
 function NavBar({ traveler, setTraveler }) {
 
+  const history = useHistory()
+
   function logout(){
     localStorage.removeItem("token")
     setTraveler(null)
-
+    history.push('/')
   }
   
   return (

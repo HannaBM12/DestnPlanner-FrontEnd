@@ -6,7 +6,7 @@ import { Form, Image, Container, Button, Label, TextArea, Grid } from 'semantic-
 import ReservationForm from "./ReservationForm";
 import ReviewForm from './ReviewForm'
 
-function HotelDetail() {
+function HotelDetail({traveler}) {
 
   const[hotelDetail, setHotelDetail] = useState(null)
   const [isLoaded, setIsLoaded] = useState(false);
@@ -19,13 +19,19 @@ function HotelDetail() {
     const [dateOut, setDateOut] = useState('')
     const [night, setNight] = useState('')
     const [room, setRoom] = useState('')
+    const [grandTotal, setGrandTotal] = useState('')
   
   
     const { id } = useParams();
     const history = useHistory()
 
+    const token = localStorage.getItem("token")
     useEffect(()=> {
-     fetch(`http://localhost:3000/hotels/${id}`)
+     fetch(`http://localhost:3000/hotels/${id}`, {
+      headers: {
+        "Authorization": `Bearer ${token}`
+      },
+     })
       .then(res => res.json())
       .then(data => {
         // console.log(data)
@@ -38,8 +44,8 @@ function HotelDetail() {
     const { name, image, propid, price, avgScore, address, neighbourhood, distance } = hotelDetail
 
     const avgRoundedScore = Math.floor(avgScore*100)/100
-    const travelerName = "Hanna Mulugeta"
-    const travelerId = 1
+    // const travelerName = "Hanna Mulugeta"
+    // const travelerId = 1
     const total = price * room * night
 
     function handleSubmit(e){
@@ -51,17 +57,18 @@ function HotelDetail() {
           no_of_night: night,
           no_of_room: room,
           cancelation_policy: `24 Hr before ${dateIn}`,
-          traveler_id: travelerId,
+          traveler_id: traveler.id,
           hotel_id: id,
           total
         }
 
         // console.log(bookingObj)
-        
+        const token = localStorage.getItem("token")
         fetch('http://localhost:3000/reservations', {
           method: 'POST',
           headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            "Authorization": `Bearer ${token}`
           },
           body: JSON.stringify(bookingObj)
         })
@@ -82,13 +89,15 @@ function HotelDetail() {
         description,
         score,
         hotel_id: id,
-        traveler_id: travelerId
+        traveler_id: traveler.id
       }
 
+      const token = localStorage.getItem("token")
       fetch('http://localhost:3000/reviews', {
         method: "POST",
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+            "Authorization": `Bearer ${token}`
         },
         body: JSON.stringify(reviewObj)
       })
@@ -115,7 +124,7 @@ function HotelDetail() {
   return (
     <>
         <div className="sidebar">
-  
+              <p>Add More Content</p>
         </div>
 
         <Container>
