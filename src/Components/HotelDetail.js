@@ -7,7 +7,7 @@ import ReservationForm from "./ReservationForm";
 import ReviewForm from './ReviewForm'
 import GuestReviews from "./GuestReviews";
 
-function HotelDetail({traveler}) {
+function HotelDetail({traveler, checkIn, checkOut, nights, rooms }) {
 
   const[hotelDetail, setHotelDetail] = useState(null)
   const [isLoaded, setIsLoaded] = useState(false);
@@ -16,10 +16,10 @@ function HotelDetail({traveler}) {
   const [score, setScore] = useState('')
   const [hotelReview, setHotelReview] = useState([])
 
-    const [dateIn, setDateIn] = useState('')
-    const [dateOut, setDateOut] = useState('')
-    const [night, setNight] = useState('')
-    const [room, setRoom] = useState('')
+    const [dateIn, setDateIn] = useState(checkIn)
+    const [dateOut, setDateOut] = useState(checkOut)
+    const [night, setNight] = useState(nights)
+    const [room, setRoom] = useState(rooms)
     const [grandTotal, setGrandTotal] = useState('')
   
   
@@ -48,6 +48,7 @@ function HotelDetail({traveler}) {
     // const travelerName = "Hanna Mulugeta"
     // const travelerId = 1
     const total = price * room * night
+    // setGrandTotal(total)
 
     function handleSubmit(e){
         e.preventDefault()
@@ -144,12 +145,12 @@ function HotelDetail({traveler}) {
                           <div>
                           <h3>{name}</h3> <br></br>
                           <p><strong># User Reviews</strong> </p>
-                          <p><strong>{avgRoundedScore} out of 5</strong> </p>
+                          <p style={{ color: 'darkorange'}}><strong>{avgRoundedScore} out of 5</strong> </p>
                           <p><strong>Address:-</strong>{address}</p>
                           <p><strong>Distance to City Center:-</strong> {distance}</p>
                           <p><strong>Neighborhood:-</strong> {neighbourhood}</p>
-                          <p><strong>Price</strong> ${price}</p>
-                          <p><strong>Cancellation Policy: </strong> 24 hr Before {dateIn}</p>
+                          <p style={{ color: 'red'}}><strong>Price</strong> ${price}</p>
+                          <p><strong>Cancellation Policy: </strong> 24 Hr Before {dateIn}</p>
                           </div>
                       </Grid.Column>
                     </Grid.Row>
@@ -161,19 +162,20 @@ function HotelDetail({traveler}) {
 
                   </Grid.Column>
                   <Grid.Column width={8}><br></br>
-                      <ReviewForm setRating={setRating} onHandleSubmit={handleReviewSubmit} score={score} setScore={setScore} setDescription={setDescription} setTitle={setTitle} name={name} title={title} description={description} />
+                      <ReviewForm setRating={setRating} onHandleSubmit={handleReviewSubmit} score={score} setScore={setScore} setDescription={setDescription} 
+                      setTitle={setTitle} name={name} title={title} description={description} total={total}/>
 
                   </Grid.Column>
+                  </Grid>
 
-                  <Grid.Column width={8}><br></br>
+              </div>
+          <div>
                       <h5><strong>Guest Reviews</strong></h5>
                       <ul>
                        {guestReviews}
                       </ul>
 
-                  </Grid.Column>
-                  </Grid>
-              </div>
+          </div>
           </Container>
 
           

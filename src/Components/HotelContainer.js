@@ -4,11 +4,12 @@ import HotelList from './HotelList'
 import Sort from './Sort.js'
 import Search from './Search.js'
 
-function HotelContainer() {
+function HotelContainer({destination}) {
     const [hotels, setHotels] = useState([])
     const [sortRating, setSortRating] = useState('All')
     const [sortPrice, setSortPrice] = useState('All')
     const [searchItem, setSearchItem] = useState('')
+    const [location, setLocation] = useState('')
    
 
     useEffect(()=> {
@@ -20,15 +21,18 @@ function HotelContainer() {
         })
 
     }, [])
+        console.log(destination)
+        const searchedLocation = hotels.filter(hotel =>
+            hotel.location.toLowerCase().includes(destination.toLowerCase()))
 
-        const searchedItem = hotels.filter(hotel =>
+        const searchedItem = searchedLocation.filter(hotel =>
         hotel.name.toLowerCase().includes(searchItem.toLowerCase()))
 
         const ratingSort = searchedItem.filter(hotel =>{
             if(sortRating === 'All'){
                 return hotel
             } else{
-                return hotel.rating === Math.floor((sortRating).split(' ')[0])
+                return hotel.rating === Math.round((sortRating).split(' ')[0])
             }
         } )
 

@@ -15,8 +15,8 @@ function HotelList({hotel, night }) {
    
      
         <Card  color = 'violet'>
+            <Image className ='card-img' src={image}  wrapped ui={false} size='medium' />
             <Card.Header><strong><h5>{name}</h5></strong></Card.Header><br></br>
-            <Image className ='card-img' src={image}  wrapped ui={false} size='large' />
     
             <Card.Content>
             <Card.Meta>
@@ -25,8 +25,9 @@ function HotelList({hotel, night }) {
              </Card.Meta><br></br>
 
             <Card.Description>
-                <strong> {avgScore} out of 5</strong> <br></br>
-                <strong>Price: </strong> ${price}<span></span>
+                <strong style={{ color: 'darkorange'}}> {avgScore} out of 5</strong> <br></br>
+                <strong style={{ color: 'red'}}>Price:   ${price} </strong><br></br><br></br>
+                <Link  to={`/hotels/${id}`}><Button floated='left' color='teal'><p>More Info</p></Button> </Link> <span></span>
                 <Link  to={`/hotels/${id}`}><Button floated='right' color='teal'><p>Book</p></Button> </Link> <span></span>
             </Card.Description>
             </Card.Content>

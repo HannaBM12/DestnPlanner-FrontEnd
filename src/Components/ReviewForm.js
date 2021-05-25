@@ -64,7 +64,7 @@ function ReviewForm ({setRating, onHandleSubmit, onHandleChange, name, title, de
         
         <div className = 'wrapper'>
             <form onSubmit = {onHandleSubmit}>
-            <div>Have an experience with {name} share your review! </div>
+            <div>Have an experience with <strong>{name}</strong> share your review! </div>
                 <div className='field'>
                     <input onChange={(e)=>setTitle(e.target.value)} type='text' name="title" value={title} placeholder="Review Title" />
                 </div>

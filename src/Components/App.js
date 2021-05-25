@@ -8,10 +8,17 @@ import ReservationContainer from "./ReservationContainer";
 import SignUp from "./SignUp";
 import Login from "./Login";
 import Profile from "./Profile";
+import HomeSearch from './HomeSearch';
 
 
 function App() {
     const [traveler, setTraveler] = useState(null)
+
+    const [destination, setDestination] = useState('')
+    const [checkIn, setCheckIn] = useState('')
+    const [checkOut, setCheckOut] = useState('')
+    const [nights, setNights] = useState('')
+    const [rooms, setRooms] = useState('')
 
     console.log(traveler)
     const history = useHistory()
@@ -39,6 +46,12 @@ function App() {
         .catch()
     }, [])
 
+    function handleSubmit(e){
+        e.preventDefault()
+        history.push('/hotels')  
+
+    }  
+
   return (
       <>
         <NavBar traveler={traveler} setTraveler={setTraveler}/>
@@ -61,11 +74,11 @@ function App() {
                     
                 </Route>
                 <Route exact path="/hotels">
-                    <HotelContainer/>
+                    <HotelContainer destination={destination}/>
                 </Route>
                 <Route exact path="/hotels/:id">
                     {traveler ? (
-                        <HotelDetail traveler={traveler}/>
+                        <HotelDetail traveler={traveler} checkIn={checkIn} checkOut={checkOut} nights={nights} rooms={rooms}/>
                     ) : (
                         <h2>Please login/SingUp, to see this page!</h2>
                     )}
@@ -75,6 +88,8 @@ function App() {
                 </Route>
                 <Route exact path="/">
                     <Home />
+                    <HomeSearch destination={destination} setDestination={setDestination} checkIn={checkIn} setCheckIn={setCheckIn}
+                    checkOut={checkOut} setCheckOut={setCheckOut} nights={nights} setNights={setNights} rooms={rooms} setRooms={setRooms} onHandleSubmit={handleSubmit}/> 
                 </Route>
             </Switch>
         </main>

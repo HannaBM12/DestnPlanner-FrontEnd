@@ -17,6 +17,8 @@ function Sort({setSortPrice, setSortRating}) {
         { key: '5 Star', value: "5 Star", text: '5 Star'},
         { key: '4 Star', value: "4 Star", text: '4 Star'},
         { key: '3 Star', value: "3 Star", text: '3 Star'},
+        { key: '2 Star', value: "2 Star", text: '2 Star'},
+        { key: '1 Star', value: "1 Star", text: '1 Star'},
      
     ]
 

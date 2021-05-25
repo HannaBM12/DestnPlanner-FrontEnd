@@ -63,6 +63,8 @@ function ReservationList({id, hotelName, avgScore, checkIn, checkOut, noOfNight,
         .then(res => res.json())
         
     }
+    const avgRoundedScore = Math.floor(avgScore*100)/100
+    console.log(avgRoundedScore)
          
     return (
         <>
@@ -73,7 +75,7 @@ function ReservationList({id, hotelName, avgScore, checkIn, checkOut, noOfNight,
        <div >
          
             <p>Hotel:- {hotelName}</p>
-            <p>{avgScore} out of 5</p>
+            <p>{avgRoundedScore} out of 5</p>
             <p>Check-In:- {checkIn}</p>
             <p>Check-Out:- {checkOut}</p>
             <p>No Of Night:- {noOfNight}</p>
@@ -114,7 +116,7 @@ function ReservationList({id, hotelName, avgScore, checkIn, checkOut, noOfNight,
             <Button type ='submit' color='teal' floated='left'><h3>Update</h3></Button>
         </Form>
         }
-        <br></br><br></br><br></br>
+       
         </>
           </div>
      </>
@@ -125,12 +127,3 @@ function ReservationList({id, hotelName, avgScore, checkIn, checkOut, noOfNight,
   export default ReservationList;
 
   
-    //   <Form.Input label='First name' placeholder='First name' />
-    //   <Form.Input label='Last name' placeholder='Last name' />
-    // </Form.Group>
-    // <Form.Group widths={2}>
-    //   <Form.Input label='Address' placeholder='Address' />
-    //   <Form.Input label='Phone' placeholder='Phone' />
-    // </Form.Group>
-    // <Form.Checkbox label='I agree to the Terms and Conditions' />
-    // <Button type='submit'>Submit</Button>
