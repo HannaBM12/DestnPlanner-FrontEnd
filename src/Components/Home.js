@@ -13,7 +13,8 @@ function Home() {
     return (
         <div >
         {/* className='bg_image'> */}
-               <h1>Welcome to Destination Planner</h1>
+               {/* <h1>Welcome to Destination Planner</h1> */}
+               <br></br><br></br><br></br>
 
         </div>
         // <>

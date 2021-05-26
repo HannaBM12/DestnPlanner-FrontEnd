@@ -46,11 +46,11 @@ main {
 form {
   background-color: lightgray;
   border: 1px solid green;
-  display: flex;
+  display: inline-flex;
   flex-direction: column;
   width: 400px;
-  margin: 0 auto;
-  padding: 0 1rem 1rem;
+  margin: 10 auto;
+  padding:  1rem 1rem;
 }
 
 form input {
@@ -68,7 +68,7 @@ form img {
 
 .sidebar {
   min-height: 100vh;
-  min-width: 16em;
+  min-width: 20em;
   width: 10%;
   background: white;
   padding: 0em;

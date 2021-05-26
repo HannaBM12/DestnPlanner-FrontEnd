@@ -3,6 +3,7 @@ import { Input, Menu, Card, Button, Divider, Form, Dropdown, Grid, Segment } fro
 import HotelList from './HotelList'
 import Sort from './Sort.js'
 import Search from './Search.js'
+import SearchedLocation from './SearchedLocation';
 
 function HotelContainer({destination}) {
     const [hotels, setHotels] = useState([])
@@ -10,7 +11,7 @@ function HotelContainer({destination}) {
     const [sortPrice, setSortPrice] = useState('All')
     const [searchItem, setSearchItem] = useState('')
     const [location, setLocation] = useState('')
-   
+    const [locationSearched, setLocationSearched] = useState('')
 
     useEffect(()=> {
         fetch('http://localhost:3000/hotels')
@@ -22,7 +23,10 @@ function HotelContainer({destination}) {
 
     }, [])
         console.log(destination)
-        const searchedLocation = hotels.filter(hotel =>
+        const filterByLocation = hotels.filter(hotel =>
+            hotel.location.toLowerCase().includes(locationSearched.toLowerCase()))
+
+        const searchedLocation = filterByLocation.filter(hotel =>
             hotel.location.toLowerCase().includes(destination.toLowerCase()))
 
         const searchedItem = searchedLocation.filter(hotel =>
@@ -32,7 +36,7 @@ function HotelContainer({destination}) {
             if(sortRating === 'All'){
                 return hotel
             } else{
-                return hotel.rating === Math.round((sortRating).split(' ')[0])
+                return hotel.rating === Math.floor((sortRating).split(' ')[0])
             }
         } )
 
@@ -52,6 +56,7 @@ function HotelContainer({destination}) {
                 <>
                 <div className="sidebar">
                     <Sort setSortPrice={setSortPrice} setSortRating={setSortRating}/>
+                    <SearchedLocation locationSearched={locationSearched} setLocationSearched= {setLocationSearched}/>
                 </div>
 
             

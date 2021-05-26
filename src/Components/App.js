@@ -80,7 +80,7 @@ function App() {
                     {traveler ? (
                         <HotelDetail traveler={traveler} checkIn={checkIn} checkOut={checkOut} nights={nights} rooms={rooms}/>
                     ) : (
-                        <h2>Please login/SingUp, to see this page!</h2>
+                        <h2 style={{ color:'teal'}}><strong>Please login/SingUp, to see this page!</strong></h2>
                     )}
                 </Route>
                 <Route exact path="/reservations">

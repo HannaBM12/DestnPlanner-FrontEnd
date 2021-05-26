@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Fragment } from 'react'
+import { Button, Form } from 'semantic-ui-react'
 
 
 const RatingContainer = styled.div`
@@ -63,28 +64,43 @@ function ReviewForm ({setRating, onHandleSubmit, onHandleChange, name, title, de
     return (
         
         <div className = 'wrapper'>
-            <form onSubmit = {onHandleSubmit}>
-            <div>Have an experience with <strong>{name}</strong> share your review! </div>
-                <div className='field'>
-                    <input onChange={(e)=>setTitle(e.target.value)} type='text' name="title" value={title} placeholder="Review Title" />
-                </div>
-                <div className='field'>
-                    <input onChange={(e)=>setDescription(e.target.value)} type='text' name="description" value={description} placeholder="Review Description" />
-                </div>
-                <div className='field'>
+            <Form onSubmit = {onHandleSubmit}> <br></br>
+            <div><h5> Review <strong style={{ color:'teal'}}>{name}</strong></h5></div> <br></br>
+            <Form.Group unstackable widths={2}>
+              <Form.Input label='Title' placeholder='Title' type='text' onChange={(e)=>setTitle(e.target.value)} type='text' name="title" value={title} placeholder="Review Title"/>
+              <Form.Input label='Description' placeholder='Write Your Review' type='text' onChange={(e)=>setDescription(e.target.value)} type='text' name="description" value={description} placeholder="Review Description" />
+            </Form.Group>
+           
                     <RatingContainer>
-                        <RatingBoxTitle>Rate This Hotel</RatingBoxTitle>
-                            <RatingBox>
-                                {ratingOptions}
-                            </RatingBox>
-                    </RatingContainer>
-                    <button type='submit'>Submit Your Review</button> 
-                </div>
-
-            </form>
+                          <RatingBoxTitle>Rate This Hotel</RatingBoxTitle>
+                                <RatingBox>
+                                    {ratingOptions}
+                                </RatingBox>
+                      </RatingContainer>
+                               
+            <Button color='teal' type='submit'><h3>Submit Your Review</h3></Button> 
+            </Form>
         </div>
         
     )
 }
 
 export default ReviewForm;
+
+
+
+                // <div className='field'>
+                //     <input onChange={(e)=>setTitle(e.target.value)} type='text' name="title" value={title} placeholder="Review Title" />
+                // </div>
+                // <div className='field'>
+                //     <input onChange={(e)=>setDescription(e.target.value)} type='text' name="description" value={description} placeholder="Review Description" />
+                // </div>
+                // <div className='field'>
+                //     <RatingContainer>
+                //         <RatingBoxTitle>Rate This Hotel</RatingBoxTitle>
+                //             <RatingBox>
+                //                 {ratingOptions}
+                //             </RatingBox>
+                //     </RatingContainer>
+                //     <button type='submit'>Submit Your Review</button> 
+                // </div>

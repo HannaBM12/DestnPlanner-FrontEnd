@@ -15,6 +15,7 @@ function ReservationList({id, hotelName, avgScore, checkIn, checkOut, noOfNight,
     const [newRoom, setNewRoom] = useState(noOfRoom)
     
     const updatedTotal = newRoom * newNight * price
+    total = Math.floor(total)
 
     function handleClick(){
         setIsClicked((isClicked) => !isClicked)
@@ -68,19 +69,19 @@ function ReservationList({id, hotelName, avgScore, checkIn, checkOut, noOfNight,
          
     return (
         <>
-            
+            <br></br>
        <div >
             <img src={image} alt={hotelName} />
        </div>
        <div >
-         
-            <p>Hotel:- {hotelName}</p>
-            <p>{avgRoundedScore} out of 5</p>
+            <br></br>
+            <strong><h4><p>Hotel:- {hotelName}</p></h4></strong>
+            <strong><p style={{ color: 'darkorange'}}><h6>{avgRoundedScore} out of 5</h6></p></strong><br></br>
             <p>Check-In:- {checkIn}</p>
             <p>Check-Out:- {checkOut}</p>
             <p>No Of Night:- {noOfNight}</p>
             <p>No Of Rooms:- {noOfRoom}</p>
-            <p>total:- ${total}</p>
+            <strong><p style={{ color: 'red'}}>Total:- ${total}</p></strong><br></br>
 
             {/* {link ? (
               <p>
@@ -104,15 +105,6 @@ function ReservationList({id, hotelName, avgScore, checkIn, checkOut, noOfNight,
                 <Form.Input label='Night' placeholder='No of Night' type="number" name="night" min="1" placeholder="nights" value={newNight} onChange={(e)=>setNewNight(parseInt((e.target.value)))}/>
                 <Form.Input label='Room' placeholder='No of Room' type="number" name="room" min="1" placeholder="rooms" value={newRoom} onChange={(e)=>setNewRoom(parseInt((e.target.value)))}/>
             </Form.Group>
-
-            {/* <label >Check-In Date:</label>
-                <input type="date" name="date" min="2021-05-19" max="2022-12-31" placeholder="Check-In"value={newCheckIn} onChange={(e)=>setNewCheckIn(e.target.value)}/><br></br>
-            <label> Check-Out Date:</label>
-                <input type="date" name="date" min="2021-05-19" max="2022-12-31" placeholder="Check-Out"value={newCheckOut} onChange={(e)=>setNewCheckOut(e.target.value)}/><br></br>
-            <label>Nights:</label>
-                <input type="number" name="night" min="1" placeholder="nights" value={newNight} onChange={(e)=>setNewNight(parseInt((e.target.value)))} /><br></br>
-            <label>No. Rooms:</label>
-                <input type="number" name="room" min="1" placeholder="rooms" value={newRoom} onChange={(e)=>setNewRoom(parseInt((e.target.value)))} /><br></br>      */}
             <Button type ='submit' color='teal' floated='left'><h3>Update</h3></Button>
         </Form>
         }

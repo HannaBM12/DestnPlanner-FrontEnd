@@ -6,8 +6,10 @@ import { Form, Image, Container, Button, Label, TextArea, Grid } from 'semantic-
 import ReservationForm from "./ReservationForm";
 import ReviewForm from './ReviewForm'
 import GuestReviews from "./GuestReviews";
+import RoomInfo from "./RoomInfo";
 
-function HotelDetail({traveler, checkIn, checkOut, nights, rooms }) {
+
+function HotelDetail({traveler, checkIn, checkOut, nights, rooms, roomType }) {
 
   const[hotelDetail, setHotelDetail] = useState(null)
   const [isLoaded, setIsLoaded] = useState(false);
@@ -15,6 +17,7 @@ function HotelDetail({traveler, checkIn, checkOut, nights, rooms }) {
   const [description, setDescription] = useState('')
   const [score, setScore] = useState('')
   const [hotelReview, setHotelReview] = useState([])
+ 
 
     const [dateIn, setDateIn] = useState(checkIn)
     const [dateOut, setDateOut] = useState(checkOut)
@@ -42,6 +45,7 @@ function HotelDetail({traveler, checkIn, checkOut, nights, rooms }) {
     }, [id])
     if (!isLoaded) return <h6>Loading...</h6>
 
+    console.log(hotelDetail)
     const { name, image, propid, price, avgScore, address, neighbourhood, distance } = hotelDetail
 
     const avgRoundedScore = Math.floor(avgScore*100)/100
@@ -118,19 +122,32 @@ function HotelDetail({traveler, checkIn, checkOut, nights, rooms }) {
     function setRating(score, e){
       e.preventDefault()
       setScore(score)
-      console.log(score)
+      // console.log(score)
       // setHotelReview([...hotelReview, score])
     }
-    console.log(hotelDetail.reviews)
-    console.log(hotelReview)
+    // console.log(hotelDetail.reviews)
+    // console.log(hotelReview)
     // console.log(hotelReview.hotel.reviews)
     const guestReviews = hotelReview.map(review =>
       <GuestReviews key={review.id} review={review} />)
+      console.log(hotelReview)
+
+      //More info
+
+      // console.log(roomType)
+
     
   return (
     <>
         <div className="sidebar">
-              <p>Add More Content</p>
+              <strong><p>Room Types</p></strong>
+              <RoomInfo />
+              <br></br>
+
+              <strong><p>Nearby Airports</p></strong>
+                    <br></br><br></br>
+
+              <strong><p>Amenities</p></strong>
         </div>
 
         <Container>
@@ -139,11 +156,11 @@ function HotelDetail({traveler, checkIn, checkOut, nights, rooms }) {
                   <Grid>
                     <Grid.Row>
                         <Grid.Column width={10}><br></br>
-                          <Image src={image} alt={name} size='large' rounded/>
+                          <Image fluid src={image} alt={name} size='large' rounded verticalAlign='middle'/>
                         </Grid.Column>
                         <Grid.Column width={6}><br></br>
                           <div>
-                          <h3>{name}</h3> <br></br>
+                          <h3 style={{ color:'teal'}}><strong>{name}</strong></h3> <br></br>
                           <p><strong># User Reviews</strong> </p>
                           <p style={{ color: 'darkorange'}}><strong>{avgRoundedScore} out of 5</strong> </p>
                           <p><strong>Address:-</strong>{address}</p>
