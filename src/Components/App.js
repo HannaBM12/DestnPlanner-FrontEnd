@@ -9,6 +9,7 @@ import SignUp from "./SignUp";
 import Login from "./Login";
 import Profile from "./Profile";
 import HomeSearch from './HomeSearch';
+import MapGl from "./MapGl";
 
 
 function App() {
@@ -88,6 +89,7 @@ function App() {
                 </Route>
                 <Route exact path="/">
                     <Home />
+                    {/* <MapGl /> */}
                     <HomeSearch destination={destination} setDestination={setDestination} checkIn={checkIn} setCheckIn={setCheckIn}
                     checkOut={checkOut} setCheckOut={setCheckOut} nights={nights} setNights={setNights} rooms={rooms} setRooms={setRooms} onHandleSubmit={handleSubmit}/> 
                 </Route>

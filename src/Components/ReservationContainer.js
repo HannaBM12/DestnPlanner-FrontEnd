@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import ReservationList from "./ReservationList";
+import { Button } from 'semantic-ui-react'
 
 
 
@@ -50,7 +51,8 @@ function ReservationContainer({traveler}) {
   return (
     <>
         <div className="sidebar">
-                <p></p>
+                <p>Explore The City</p>
+                <Button className ="city-tour-btn" color='pink'><p>Add City tour</p></Button>
          
         </div>
       

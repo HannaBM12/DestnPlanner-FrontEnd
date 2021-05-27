@@ -7,6 +7,7 @@ import ReservationForm from "./ReservationForm";
 import ReviewForm from './ReviewForm'
 import GuestReviews from "./GuestReviews";
 import RoomInfo from "./RoomInfo";
+import MapGl from "./MapGl";
 
 
 function HotelDetail({traveler, checkIn, checkOut, nights, rooms, roomType }) {
@@ -46,7 +47,7 @@ function HotelDetail({traveler, checkIn, checkOut, nights, rooms, roomType }) {
     if (!isLoaded) return <h6>Loading...</h6>
 
     console.log(hotelDetail)
-    const { name, image, propid, price, avgScore, address, neighbourhood, distance } = hotelDetail
+    const { name, image, propid, price, avgScore, address, neighbourhood, distance, longitude, latitude} = hotelDetail
 
     const avgRoundedScore = Math.floor(avgScore*100)/100
     // const travelerName = "Hanna Mulugeta"
@@ -139,7 +140,11 @@ function HotelDetail({traveler, checkIn, checkOut, nights, rooms, roomType }) {
     
   return (
     <>
+    
         <div className="sidebar">
+        <br></br> <br></br>
+          <MapGl hotelDetail={hotelDetail} />
+          <br></br>  <br></br>  <br></br>
               <strong><p>Room Types</p></strong>
               <RoomInfo />
               <br></br>
