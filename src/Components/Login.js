@@ -10,7 +10,7 @@ function Login({ setTraveler}) {
 
   const [errors, setErrors] = useState([])
   const history = useHistory()
-  console.log(errors)
+  // console.log(errors)
 
   function handleChange(e) {
     setFormData({ ...formData, [e.target.name]: e.target.value });

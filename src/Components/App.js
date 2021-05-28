@@ -10,6 +10,7 @@ import Login from "./Login";
 import Profile from "./Profile";
 import HomeSearch from './HomeSearch';
 import MapGl from "./MapGl";
+import TourContainer from "./TourContainer";
 
 
 function App() {
@@ -77,7 +78,7 @@ function App() {
                 <Route exact path="/hotels">
                     <HotelContainer destination={destination}/>
                 </Route>
-                <Route exact path="/hotels/:id">
+                <Route exact path="/hotels/:id/:propid">
                     {traveler ? (
                         <HotelDetail traveler={traveler} checkIn={checkIn} checkOut={checkOut} nights={nights} rooms={rooms}/>
                     ) : (
@@ -87,9 +88,12 @@ function App() {
                 <Route exact path="/reservations">
                         <ReservationContainer traveler={traveler} />
                 </Route>
+                <Route exact path="/tours">
+                        <TourContainer traveler={traveler} />
+                </Route>
                 <Route exact path="/">
                     <Home />
-                    {/* <MapGl /> */}
+                
                     <HomeSearch destination={destination} setDestination={setDestination} checkIn={checkIn} setCheckIn={setCheckIn}
                     checkOut={checkOut} setCheckOut={setCheckOut} nights={nights} setNights={setNights} rooms={rooms} setRooms={setRooms} onHandleSubmit={handleSubmit}/> 
                 </Route>

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import ReservationList from "./ReservationList";
 import { Button } from 'semantic-ui-react'
+import { Link } from "react-router-dom";
 
 
 
@@ -52,7 +53,7 @@ function ReservationContainer({traveler}) {
     <>
         <div className="sidebar">
                 <p>Explore The City</p>
-                <Button className ="city-tour-btn" color='pink'><p>Add City tour</p></Button>
+                <Link to="/tours"><Button className ="city-tour-btn" color='pink'><p>Add City tour</p></Button></Link>
          
         </div>
       

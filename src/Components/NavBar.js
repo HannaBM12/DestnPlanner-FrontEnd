@@ -24,6 +24,7 @@ function NavBar({ traveler, setTraveler }) {
            { traveler ? (
              <>
                 <Link to="/hotels">Hotels</Link> 
+                <Link to="/tours">Tours</Link> 
                 <Link to="/reservations">Reservation</Link>
                 <Link to="/profile">Profile</Link>
                 <button onClick={logout}>Logout</button>
@@ -31,6 +32,7 @@ function NavBar({ traveler, setTraveler }) {
            ):(
              <>
                 <Link to="/hotels">Hotels</Link> 
+                {/* <Link to="/tours">Tours</Link>  */}
                 <Link to="/login">Login</Link>
                 <Link to="/signup">SignUp</Link>
              </>

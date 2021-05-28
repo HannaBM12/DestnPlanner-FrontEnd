@@ -6,7 +6,7 @@ import HotelDetail from './HotelDetail';
 import ReservationForm from './ReservationForm'
 
 
-function ReservationList({id, hotelName, avgScore, checkIn, checkOut, noOfNight, noOfRoom, total, image, price, onRemoveReservation, onHandleUpdate}){ 
+function ReservationList({id, room, hotelName, avgScore, checkIn, checkOut, noOfNight, noOfRoom, total, image, price, onRemoveReservation, onHandleUpdate}){ 
    
     const [isClicked, setIsClicked] = useState(true)
     const [newCheckIn, setNewCheckIn] = useState(checkIn)
@@ -17,6 +17,7 @@ function ReservationList({id, hotelName, avgScore, checkIn, checkOut, noOfNight,
     const updatedTotal = newRoom * newNight * price
     total = Math.floor(total)
 
+   
     function handleClick(){
         setIsClicked((isClicked) => !isClicked)
     }

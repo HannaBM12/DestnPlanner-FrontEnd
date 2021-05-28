@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Input, Menu } from 'semantic-ui-react'
+import { Input, Menu, List } from 'semantic-ui-react'
 import { useParams } from 'react-router-dom'
 import { useHistory } from 'react-router-dom'
 import { Form, Image, Container, Button, Label, TextArea, Grid } from 'semantic-ui-react'
@@ -8,6 +8,7 @@ import ReviewForm from './ReviewForm'
 import GuestReviews from "./GuestReviews";
 import RoomInfo from "./RoomInfo";
 import MapGl from "./MapGl";
+import ReservationList from "./ReservationList";
 
 
 function HotelDetail({traveler, checkIn, checkOut, nights, rooms, roomType }) {
@@ -18,13 +19,16 @@ function HotelDetail({traveler, checkIn, checkOut, nights, rooms, roomType }) {
   const [description, setDescription] = useState('')
   const [score, setScore] = useState('')
   const [hotelReview, setHotelReview] = useState([])
+  const [cleanliness, setCleanliness] = useState([])
  
 
     const [dateIn, setDateIn] = useState(checkIn)
     const [dateOut, setDateOut] = useState(checkOut)
     const [night, setNight] = useState(nights)
     const [room, setRoom] = useState(rooms)
-    const [grandTotal, setGrandTotal] = useState('')
+    const [amenities, setAmenities] = useState([])
+    const [roomTypes, setRoomTypes] = useState([])
+    const [transport, setTransport] = useState([])
   
   
     const { id } = useParams();
@@ -32,6 +36,23 @@ function HotelDetail({traveler, checkIn, checkOut, nights, rooms, roomType }) {
 
     const token = localStorage.getItem("token")
     useEffect(()=> {
+
+      const hotelApiId = parseInt(history.location.pathname.split("/")[3])
+      console.log(hotelApiId)
+
+      fetch(`http://localhost:3000/search/${hotelApiId}`)
+      .then(res => res.json())
+      .then(hotelDetail => {
+          console.log(hotelDetail.transportation.transportLocations[0].locations)
+          setAmenities(hotelDetail.data.body.overview.overviewSections[0].content)
+          setRoomTypes(hotelDetail.data.body.propertyDescription.roomTypeNames)
+          setCleanliness(hotelDetail.data.body.hygieneAndCleanliness.healthAndSafetyMeasures.measures)
+          setTransport(hotelDetail.transportation.transportLocations[0].locations)
+          setIsLoaded(true)
+      }).then(console.log(transport))
+      // .then(console.log(transport))
+   
+
      fetch(`http://localhost:3000/hotels/${id}`, {
       headers: {
         "Authorization": `Bearer ${token}`
@@ -46,12 +67,24 @@ function HotelDetail({traveler, checkIn, checkOut, nights, rooms, roomType }) {
     }, [id])
     if (!isLoaded) return <h6>Loading...</h6>
 
-    console.log(hotelDetail)
-    const { name, image, propid, price, avgScore, address, neighbourhood, distance, longitude, latitude} = hotelDetail
+   
+    const hotelAminity = amenities.map(amenity =>
+      <li>{amenity}</li>)
+    
+    const typeRooms = roomTypes.map(room =>
+      <li>{room}</li>)
+
+    const airportNearby = transport.map(airport =>
+           airport.name)
+
+
+    // console.log(hotelDetail)
+    const { name, image, propid, price, avgScore, address, neighbourhood, distance, guestReviews, guestRating} = hotelDetail
 
     const avgRoundedScore = Math.floor(avgScore*100)/100
-    // const travelerName = "Hanna Mulugeta"
-    // const travelerId = 1
+    const avg =  (avgRoundedScore + score)/2
+    
+    console.log(avg)
     const total = price * room * night
     // setGrandTotal(total)
 
@@ -129,30 +162,56 @@ function HotelDetail({traveler, checkIn, checkOut, nights, rooms, roomType }) {
     // console.log(hotelDetail.reviews)
     // console.log(hotelReview)
     // console.log(hotelReview.hotel.reviews)
-    const guestReviews = hotelReview.map(review =>
+    const reviews = hotelReview.map(review =>
       <GuestReviews key={review.id} review={review} />)
-      console.log(hotelReview)
+      // console.log(hotelReview)
 
       //More info
 
       // console.log(roomType)
 
+     
     
   return (
     <>
     
         <div className="sidebar">
-        <br></br> <br></br>
+            <br></br> <br></br>
           <MapGl hotelDetail={hotelDetail} />
-          <br></br>  <br></br>  <br></br>
-              <strong><p>Room Types</p></strong>
-              <RoomInfo />
-              <br></br>
+            <br></br>  <br></br>  <br></br>
+          <List>
+            <List.Item>
+              <List.Icon name='hotel'/>
+              <List.Content><strong>Room Types</strong></List.Content>
+            </List.Item>
+          </List>
+              {typeRooms}
+             <br></br><br></br>
 
-              <strong><p>Nearby Airports</p></strong>
+            <List>
+              <List.Item>
+                <List.Icon name='plane'/>
+                <List.Content><strong>Nearby Airports</strong></List.Content>
+              </List.Item>
+          </List>
+
+             <ul>
+               <li>
+              {airportNearby}
+               </li>
+              </ul>
                     <br></br><br></br>
-
-              <strong><p>Amenities</p></strong>
+          <List>
+          <List.Item>
+            <List.Icon name='wifi'/>
+              <List.Content><strong>Amenities</strong></List.Content>
+            </List.Item>
+          </List>
+              <ul>
+                <li>
+              {hotelAminity}
+                </li>
+              </ul>
         </div>
 
         <Container>
@@ -166,8 +225,14 @@ function HotelDetail({traveler, checkIn, checkOut, nights, rooms, roomType }) {
                         <Grid.Column width={6}><br></br>
                           <div>
                           <h3 style={{ color:'teal'}}><strong>{name}</strong></h3> <br></br>
-                          <p><strong># User Reviews</strong> </p>
-                          <p style={{ color: 'darkorange'}}><strong>{avgRoundedScore} out of 5</strong> </p>
+                          <p><strong>Guest Reviews: <span style={{ color: 'darkorange'}}>#{guestReviews}</span>,<span></span>  Rating: <span style={{ color: 'darkorange'}}>{guestRating}/10</span></strong> </p>
+                          { score ? (
+                            <p><strong>Star:</strong> <strong style={{ color: 'darkorange'}}>{avg} out of 5</strong> </p>
+                            ):(
+                              <p><strong>Star:</strong> <strong style={{ color: 'darkorange'}}>{avgRoundedScore} out of 5</strong> </p>
+                          )
+
+                          }
                           <p><strong>Address:-</strong>{address}</p>
                           <p><strong>Distance to City Center:-</strong> {distance}</p>
                           <p><strong>Neighborhood:-</strong> {neighbourhood}</p>
@@ -194,7 +259,7 @@ function HotelDetail({traveler, checkIn, checkOut, nights, rooms, roomType }) {
           <div>
                       <h5><strong>Guest Reviews</strong></h5>
                       <ul>
-                       {guestReviews}
+                       {reviews}
                       </ul>
 
           </div>
