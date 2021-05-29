@@ -161,3 +161,24 @@ h1 {
   padding-bottom: 1em;
   min-width: 20em;
 }
+
+
+.tour-detail {
+  display: flex;
+   width: 180;
+  margin-right: 12rem;
+  margin-bottom: 15px;
+  position: relative;
+  max-width: 90vw;
+  
+}
+
+.tour-detail .details {
+  flex: 1;
+  margin-left: 3rem;
+}
+
+.tour-image img {
+  width: 100%;
+  max-width: 400px;
+}

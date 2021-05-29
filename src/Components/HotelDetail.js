@@ -6,7 +6,6 @@ import { Form, Image, Container, Button, Label, TextArea, Grid } from 'semantic-
 import ReservationForm from "./ReservationForm";
 import ReviewForm from './ReviewForm'
 import GuestReviews from "./GuestReviews";
-import RoomInfo from "./RoomInfo";
 import MapGl from "./MapGl";
 import ReservationList from "./ReservationList";
 
@@ -19,7 +18,7 @@ function HotelDetail({traveler, checkIn, checkOut, nights, rooms, roomType }) {
   const [description, setDescription] = useState('')
   const [score, setScore] = useState('')
   const [hotelReview, setHotelReview] = useState([])
-  const [cleanliness, setCleanliness] = useState([])
+  
  
 
     const [dateIn, setDateIn] = useState(checkIn)
@@ -29,6 +28,10 @@ function HotelDetail({traveler, checkIn, checkOut, nights, rooms, roomType }) {
     const [amenities, setAmenities] = useState([])
     const [roomTypes, setRoomTypes] = useState([])
     const [transport, setTransport] = useState([])
+    const [cleanliness, setCleanliness] = useState([])
+    const [hotelSize, setHotelSize] = useState('')
+    const [pets, setPets] = useState('')
+    const [requiredDocs, setRequiredDocs] = useState([])
   
   
     const { id } = useParams();
@@ -43,14 +46,17 @@ function HotelDetail({traveler, checkIn, checkOut, nights, rooms, roomType }) {
       fetch(`http://localhost:3000/search/${hotelApiId}`)
       .then(res => res.json())
       .then(hotelDetail => {
-          console.log(hotelDetail.transportation.transportLocations[0].locations)
+          console.log(hotelDetail.data.body.atAGlance.keyFacts.arrivingLeaving)
+          setRequiredDocs(hotelDetail.data.body.atAGlance.keyFacts.arrivingLeaving)
+          setPets(hotelDetail.data.body.atAGlance.travellingOrInternet.travelling.pets[0])
+          setHotelSize(hotelDetail.data.body.atAGlance.keyFacts.hotelSize[0])
           setAmenities(hotelDetail.data.body.overview.overviewSections[0].content)
           setRoomTypes(hotelDetail.data.body.propertyDescription.roomTypeNames)
           setCleanliness(hotelDetail.data.body.hygieneAndCleanliness.healthAndSafetyMeasures.measures)
           setTransport(hotelDetail.transportation.transportLocations[0].locations)
           setIsLoaded(true)
-      }).then(console.log(transport))
-      // .then(console.log(transport))
+      }).then(console.log(cleanliness))
+  
    
 
      fetch(`http://localhost:3000/hotels/${id}`, {
@@ -70,7 +76,13 @@ function HotelDetail({traveler, checkIn, checkOut, nights, rooms, roomType }) {
    
     const hotelAminity = amenities.map(amenity =>
       <li>{amenity}</li>)
+
+    const checkInDocs = requiredDocs.map(doc =>
+      <li>{doc}</li>)
     
+    const covid = cleanliness.map(clean =>
+      <li>{clean}</li>)
+
     const typeRooms = roomTypes.map(room =>
       <li>{room}</li>)
 
@@ -78,8 +90,8 @@ function HotelDetail({traveler, checkIn, checkOut, nights, rooms, roomType }) {
            airport.name)
 
 
-    // console.log(hotelDetail)
-    const { name, image, propid, price, avgScore, address, neighbourhood, distance, guestReviews, guestRating} = hotelDetail
+    console.log(hotelDetail)
+    const { name, image, propid, price, avgScore, location, address, neighbourhood, distance, guestReviews, guestRating} = hotelDetail
 
     const avgRoundedScore = Math.floor(avgScore*100)/100
     const avg =  (avgRoundedScore + score)/2
@@ -115,7 +127,7 @@ function HotelDetail({traveler, checkIn, checkOut, nights, rooms, roomType }) {
         .then(res => res.json())
         .then(reservationData => {
           console.log(reservationData)
-          history.push('/reservations')
+          history.push('/hotelReservations', location)
         })
     }
 
@@ -144,7 +156,6 @@ function HotelDetail({traveler, checkIn, checkOut, nights, rooms, roomType }) {
       .then(res => res.json())
       .then(reviewData => {
         console.log(reviewData)
-        // const review = hotelDetial.reviews
         setHotelReview([...hotelDetail.reviews, reviewData])
         setTitle('')
         setDescription('')
@@ -156,20 +167,11 @@ function HotelDetail({traveler, checkIn, checkOut, nights, rooms, roomType }) {
     function setRating(score, e){
       e.preventDefault()
       setScore(score)
-      // console.log(score)
-      // setHotelReview([...hotelReview, score])
+     
     }
-    // console.log(hotelDetail.reviews)
-    // console.log(hotelReview)
-    // console.log(hotelReview.hotel.reviews)
+  
     const reviews = hotelReview.map(review =>
       <GuestReviews key={review.id} review={review} />)
-      // console.log(hotelReview)
-
-      //More info
-
-      // console.log(roomType)
-
      
     
   return (
@@ -220,7 +222,11 @@ function HotelDetail({traveler, checkIn, checkOut, nights, rooms, roomType }) {
                   <Grid>
                     <Grid.Row>
                         <Grid.Column width={10}><br></br>
-                          <Image fluid src={image} alt={name} size='large' rounded verticalAlign='middle'/>
+                          <Image fluid src={image} alt={name} size='large' rounded verticalAlign='middle'/><br></br><br></br>
+                          <strong><p>Covid-19 Measures</p></strong>
+                          <ul>{covid}</ul>
+                          <p><strong>Hotel Size:</strong> {hotelSize}</p>
+                          <p><strong>Pets:</strong> {pets}</p>
                         </Grid.Column>
                         <Grid.Column width={6}><br></br>
                           <div>
@@ -233,6 +239,7 @@ function HotelDetail({traveler, checkIn, checkOut, nights, rooms, roomType }) {
                           )
 
                           }
+                          <p><strong>Location:-</strong>{location}</p>
                           <p><strong>Address:-</strong>{address}</p>
                           <p><strong>Distance to City Center:-</strong> {distance}</p>
                           <p><strong>Neighborhood:-</strong> {neighbourhood}</p>
@@ -257,6 +264,8 @@ function HotelDetail({traveler, checkIn, checkOut, nights, rooms, roomType }) {
 
               </div>
           <div>
+                      <strong>Check-In Time</strong>
+                      <ul>{checkInDocs}</ul>
                       <h5><strong>Guest Reviews</strong></h5>
                       <ul>
                        {reviews}
