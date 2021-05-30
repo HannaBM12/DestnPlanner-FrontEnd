@@ -31,7 +31,7 @@ function HotelList({hotel}) {
                 <strong style={{ color: 'darkorange'}}> {avgScores} out of 5</strong> <br></br>
                 <strong style={{ color: 'red'}}>Price:   ${price} </strong><br></br><br></br>
                 <Link  to={`/hotels/${id}/${propid}`}><Button floated='left' color='teal' ><p>More Info</p></Button> </Link> <span></span>
-                <Link  to={`/hotels/${id}`}><Button floated='right' color='teal'><p>Book</p></Button> </Link> <span></span>
+                <Link  to={`/hotels/${id}${propid}`}><Button floated='right' color='teal'><p>Book</p></Button> </Link> <span></span>
             </Card.Description>
             </Card.Content>
         </Card>

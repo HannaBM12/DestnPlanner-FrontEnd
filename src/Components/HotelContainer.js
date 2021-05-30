@@ -68,6 +68,8 @@ function HotelContainer({destination}) {
                     </Card.Group>
 
                 </div>
+
+           
               
                 
             </>

@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from "react";
 import TourList from "./TourList"
 import { Card } from 'semantic-ui-react'
+import Search from './Search'
+import TourSearch from "./TourSearch.js";
 
 function TourContainer({review, traveler}){ 
   
     const[tours, setTours] = useState([])
+    const [searchItem, setSearchItem] = useState('')
     const [isLoaded, setIsLoaded] = useState(false)
 
 
@@ -26,16 +29,20 @@ function TourContainer({review, traveler}){
 
     if (!isLoaded) return <h2>Loading...</h2>
 
-    const tourDetail = tours.map(tour =>
+    const filterByLocation = tours.filter(tour =>
+        tour.location.toLowerCase().includes(searchItem.toLowerCase()))
+
+    const tourDetail = filterByLocation.map(tour =>
         <TourList  key={tour.id} tour = {tour} />)
 
 
     return (
         <>
         <div className="sidebar">
-            
+        <TourSearch searchItem ={searchItem} setSearchItem={setSearchItem}/>
         </div>
             <div>
+                <br></br> <br></br>
                 <Card.Group itemsPerRow={3}>
  
                      {tourDetail}   

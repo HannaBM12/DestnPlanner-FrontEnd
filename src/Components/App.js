@@ -11,7 +11,8 @@ import Profile from "./Profile";
 import HomeSearch from './HomeSearch';
 import MapGl from "./MapGl";
 import TourContainer from "./TourContainer";
-
+import TourDetail from "./TourDetail";
+import ReservationList from "./ReservationList";
 
 function App() {
     const [traveler, setTraveler] = useState(null)
@@ -91,11 +92,15 @@ function App() {
                 <Route exact path="/tours">
                         <TourContainer traveler={traveler} />
                 </Route>
+                <Route exact path="/tours/:id">
+                        <TourDetail traveler={traveler}/>
+                </Route>
                 <Route exact path="/">
                     <Home />
-                
-                    <HomeSearch destination={destination} setDestination={setDestination} checkIn={checkIn} setCheckIn={setCheckIn}
-                    checkOut={checkOut} setCheckOut={setCheckOut} nights={nights} setNights={setNights} rooms={rooms} setRooms={setRooms} onHandleSubmit={handleSubmit}/> 
+                    {/* <div className="bottom-part"> */}
+                        <HomeSearch destination={destination} setDestination={setDestination} checkIn={checkIn} setCheckIn={setCheckIn}
+                        checkOut={checkOut} setCheckOut={setCheckOut} nights={nights} setNights={setNights} rooms={rooms} setRooms={setRooms} onHandleSubmit={handleSubmit}/> 
+                    {/* </div> */}
                 </Route>
             </Switch>
         </main>

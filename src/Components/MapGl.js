@@ -11,7 +11,7 @@ function MapGl({hotelDetail}) {
     const [viewport, setViewport] = useState({
         latitude: latitude,
         longitude: longitude,
-        width: "19vw",
+        width: "23vw",
         height: "35vh",
         zoom: 10
     }) ;

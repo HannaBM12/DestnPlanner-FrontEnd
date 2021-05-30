@@ -5,14 +5,14 @@ import { Card, Segment, Icon, Image, Container, Button, Divider } from 'semantic
 
 function TourList({tour}){ 
   
-        console.log(tour)
-        const {id, name, description, location, image, price} = tour
+        // console.log(tour)
+        const {id, name, description, location, timage, tprice} = tour
 
 
     return (
         <Card  color = 'violet'>
        
-        <Image className ='card-img' src={image}  wrapped ui={false} size='small' />
+        <Image className ='card-img' src={timage}  wrapped ui={false} size='small' />
     
         <Card.Content>
           <Card.Header>{name}</Card.Header><br></br>
@@ -25,7 +25,7 @@ function TourList({tour}){
             <strong>Description</strong><br></br><br></br>
             {description} <br></br><br></br>
            </Container>
-          <strong>Price</strong> ${price}
+          <strong>Price</strong> ${tprice}
           </Card.Description>
         </Card.Content>
         <Card.Content extra>
