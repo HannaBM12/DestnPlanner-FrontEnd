@@ -41,10 +41,10 @@ main {
   display: flex;
 }
 
-/* .background {
-  margin: 1rem;
-  display: inherit;
-} */
+main {
+  margin: 2rem;
+  display: flex;
+}
 
 form {
   background-color: lightgray;
