@@ -6,7 +6,7 @@ import HotelDetail from './HotelDetail';
 import ReservationForm from './ReservationForm'
 
 
-function ReservationList({id, room, hotelName, avgScore, checkIn, checkOut, noOfNight, noOfRoom, total, image, price, onRemoveReservation, onHandleUpdate}){ 
+function ReservationList({id, room, hotelName, avgScore, checkIn, checkOut, noOfNight, noOfRoom, total, image, price, onRemoveReservation, onHandleUpdate, tour}){ 
    
     const [isClicked, setIsClicked] = useState(true)
     const [newCheckIn, setNewCheckIn] = useState(checkIn)
@@ -66,7 +66,8 @@ function ReservationList({id, room, hotelName, avgScore, checkIn, checkOut, noOf
         
     }
     const avgRoundedScore = Math.floor(avgScore*100)/100
-    console.log(avgRoundedScore)
+    console.log(tour)
+    // const {date, quantity, timage, tourTotal} = tour
          
     return (
         <>
@@ -84,13 +85,6 @@ function ReservationList({id, room, hotelName, avgScore, checkIn, checkOut, noOf
             <p>No Of Rooms:- {noOfRoom}</p>
             <strong><p style={{ color: 'red'}}>Total:- ${total}</p></strong><br></br>
 
-            {/* {link ? (
-              <p>
-                <a target="_blank" rel="noreferrer" href={link}>
-                  Project Homepage
-                </a>
-              </p>
-            ) : null} */}
 
         <Button color='pink' onClick={deleteReservation} ><h5>Cancel Reservation</h5></Button>
         <>

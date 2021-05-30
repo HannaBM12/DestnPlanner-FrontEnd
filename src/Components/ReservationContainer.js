@@ -5,15 +5,16 @@ import { Link } from "react-router-dom";
 
 
 
-function ReservationContainer({traveler}) {
+function ReservationContainer({traveler, location}) {
 
     const[reservations, setReservations] = useState([])
+    const[tours, setTours] = useState([])
     const [isLoaded, setIsLoaded] = useState(false)
 
 
     const token = localStorage.getItem("token")
-    useEffect(()=>{
 
+    useEffect(()=>{
         fetch(`http://localhost:3000/travelers/${traveler.id}`, {
           headers: {
             "Authorization": `Bearer ${token}`
@@ -23,11 +24,12 @@ function ReservationContainer({traveler}) {
         .then(travelerData => {
           console.log(travelerData)
             setReservations(travelerData.reservations)
+            setTours(travelerData.tourReservations)
             setIsLoaded(true)
         })
     }, [])
 
-    // console.log(reservations[0].hotel)
+    // console.log(location)
     if (!isLoaded) return <h2>Loading...</h2>
 
 
@@ -46,6 +48,9 @@ function ReservationContainer({traveler}) {
    const hotelReservation = reservations.map(res=>
         <ReservationList key={res.id} {...res} onRemoveReservation={removeReservation} onHandleUpdate={handleUpdateReservation}/> )
 
+  //  const tourReservation = tours.map(tour=>
+  //       <ReservationList key={tour.name} tour={tour}  /> )
+  
         // console.log(hotelReservation)
 
 
@@ -60,6 +65,7 @@ function ReservationContainer({traveler}) {
         <div>
             <h1><strong><u><em>Reservations Summary</em></u></strong></h1><br></br>
             {hotelReservation}
+            {/* {tourReservation} */}
         </div>
     </>
   );

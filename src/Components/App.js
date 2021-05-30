@@ -9,10 +9,12 @@ import SignUp from "./SignUp";
 import Login from "./Login";
 import Profile from "./Profile";
 import HomeSearch from './HomeSearch';
-import MapGl from "./MapGl";
+import Cart from "./Cart";
 import TourContainer from "./TourContainer";
 import TourDetail from "./TourDetail";
 import ReservationList from "./ReservationList";
+
+
 
 function App() {
     const [traveler, setTraveler] = useState(null)
@@ -86,8 +88,13 @@ function App() {
                         <h2 style={{ color:'teal'}}><strong>Please login/SingUp, to see this page!</strong></h2>
                     )}
                 </Route>
-                <Route exact path="/reservations">
+                <Route exact path="/hotelReservations">
                         <ReservationContainer traveler={traveler} />
+                </Route>
+
+                <Route exact path="/reservations">
+                        <Cart traveler={traveler} />
+                        {/* <ReservationList traveler={traveler} /> */}
                 </Route>
                 <Route exact path="/tours">
                         <TourContainer traveler={traveler} />
