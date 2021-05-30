@@ -25,7 +25,7 @@ function TotalReservation({traveler}) {
         .then(res => res.json())
         .then(travelerData => {
           console.log(travelerData)
-            setHotelReservations(travelerData.reservations)
+            // setHotelReservations(travelerData.reservations)
             setTourReservations(travelerData.tourReservations)
             setIsLoaded(true)
         })
@@ -33,30 +33,23 @@ function TotalReservation({traveler}) {
 
     // console.log(location)
     if (!isLoaded) return <h2>Loading...</h2>
-
-
-    // function removeReservation(resId){
-    //    const afterRemove = reservations.filter(reservation => 
-    //     reservation.id !== resId)
-    //     setReservations(afterRemove)
-    // }
-
-    // function handleUpdateReservation(updatedRes){
-    //   const afterUpdate = reservations.map(reservation =>
-    //     reservation.id === updatedRes.id ? updatedRes : reservation)
-    //     setReservations(afterUpdate)
-    // }
+       
+   
     
-//    const hotelRes = hotelReservations.map(res=>
-//         <CartDisplay key={res.id} res = {res} /> )
-    
+   function deleteTour(tourId){
+       console.log(tourId)
+        const tourData = tourReservations.filter(tour =>
+            tour.id !== tourId)
+            setTourReservations(tourData)
+   }
+
 
    const tourRes = tourReservations.map(tour=>
-        <CartDisplay key={tour.id} tour = {tour} />)
+        <CartDisplay key={tour.id} tour = {tour} onDeleteTour={deleteTour}/>)
   
         // console.log(hotelRes)
 
-
+    
   return (
     <>
         <div className="sidebar">

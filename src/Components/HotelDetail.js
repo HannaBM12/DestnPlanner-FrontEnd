@@ -127,7 +127,7 @@ function HotelDetail({traveler, checkIn, checkOut, nights, rooms, roomType }) {
         .then(res => res.json())
         .then(reservationData => {
           console.log(reservationData)
-          history.push('/reservations', location)
+          history.push('/hotelReservations', location)
         })
     }
 
@@ -178,7 +178,7 @@ function HotelDetail({traveler, checkIn, checkOut, nights, rooms, roomType }) {
     <>
     
         <div className="sidebar">
-           
+            <br></br> <br></br>
           <MapGl hotelDetail={hotelDetail} />
             <br></br>  <br></br>  <br></br>
           <List>
@@ -280,4 +280,3 @@ function HotelDetail({traveler, checkIn, checkOut, nights, rooms, roomType }) {
 }
 
 export default HotelDetail;
-

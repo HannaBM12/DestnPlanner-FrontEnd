@@ -6,12 +6,29 @@ import Reservation from "./ReservationForm";
 
 
 
-function CartDisplay({tour, res, traveler}) {
+function CartDisplay({tour, res, traveler, onDeleteTour}) {
     console.log(tour)
-    console.log(res)
-    const {date, quantity, timage, tourTotal} = tour
+    
+    const {id, date, quantity, timage, tourTotal} = tour
+    console.log(id)
    
    
+    function removeTour(){
+        onDeleteTour(id)
+
+        const token = localStorage.getItem("token")
+        
+        fetch(`http://localhost:3000/tour_reservations/${id}`, {
+            method: "DELETE",
+            headers: {
+                "Authorization": `Bearer ${token}`
+              },
+        })
+        .then(res => res.json())
+        .then(console.log)
+        
+    }
+    
 
   return (
     
@@ -24,7 +41,7 @@ function CartDisplay({tour, res, traveler}) {
                 <p>Tour Date:- {date}</p>
                 <p>Quantity:- {quantity} </p>
                 <p>Total:- ${tourTotal}</p> 
-                <Button color='pink'  onClick><h3>Delete Trip</h3></Button>
+                <Button color='pink'  onClick={removeTour}><h3>Delete Trip</h3></Button>
             </div>
         </div> 
     
