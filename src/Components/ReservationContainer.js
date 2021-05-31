@@ -29,7 +29,7 @@ function ReservationContainer({traveler, location}) {
         })
     }, [])
 
-    // console.log(location)
+  
     if (!isLoaded) return <h2>Loading...</h2>
 
 
@@ -56,8 +56,8 @@ function ReservationContainer({traveler, location}) {
 
   return (
     <>
-        <div className="sidebar">
-                <p>Explore The City</p>
+        <div className="sidebar"><br/><br/>
+                <h4 style={{ color: 'teal'}}><strong>Explore The City</strong></h4><br/>
                 <Link to="/tours"><Button className ="city-tour-btn" color='pink'><p>Add City tour</p></Button></Link>
          
         </div>

@@ -1,4 +1,16 @@
 import React, { useState } from "react";
+import { makeStyles } from '@material-ui/core/styles';
+import { Avatar, Button, Grid, Paper, Typography } from '@material-ui/core'
+import EditIcon from '@material-ui/icons/Edit';
+import TextField from '@material-ui/core/TextField';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+
+const useStyles = makeStyles((theme) => ({
+
+  paperStyle: {padding:15, height:'45Vh', width:'280', margin: "20px auto", backgroundColor: 'none'},
+  avatarStyle: {backgroundColor: '#17a2b8'},
+  styleBtn: {margin: '15px 0'}
+}))
 
 function Profile( {traveler, setTraveler} ) {
   const [formData, setFormData] = useState({
@@ -34,24 +46,42 @@ function Profile( {traveler, setTraveler} ) {
 
   const { email, age } = formData;
 
+  const classes = useStyles();
+
   return (
-    <form onSubmit={handleSubmit}>
-      <h1>{traveler.name}'s Profile</h1>
 
-      <label>Email</label>
-      <input
-        type="text"
-        name="email"
-        autoComplete="off"
-        value={email}
-        onChange={handleChange}
-      />
-      
-      <label>Age</label>
-      <textarea name="age" value={age} onChange={handleChange} />
+    <Grid className={classes.paperStyle}>
+        <Paper elevation={10} className={classes.paperStyle}>
+            <Grid align='center'>
+          <Avatar className={classes.avatarStyle}><EditIcon/></Avatar><br></br>
+            </Grid>
+                  <form onSubmit={handleSubmit}>
+                        <h2>{traveler.name}'s Profile</h2>
 
-      <input type="submit" value="Update" />
-    </form>
+                      <TextField  className={classes.styleBtn}
+                          id="filled-multiline-flexible"
+                          type="text"
+                          name="email"
+                          label="Email"
+                          autoComplete="off"
+                          value={email}
+                          onChange={handleChange}
+                          variant="filled"
+                        />
+                        
+                      <TextField className={classes.styleBtn}
+                        id="filled-multiline-flexible"
+                        label="Age"
+                        name="age" 
+                        value={age} 
+                        onChange={handleChange}
+                        variant="filled"
+                        />
+
+                      <Button type='submit' color='primary' variant='contained' fullWidth className={classes.styleBtn}>Update</Button>
+                  </form>
+              </Paper>
+            </Grid>
   );
 }
 

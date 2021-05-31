@@ -9,7 +9,7 @@ import Reservation from "./ReservationForm";
 function CartDisplay({tour, res, traveler, onDeleteTour}) {
     console.log(tour)
     
-    const {id, date, quantity, timage, tourTotal} = tour
+    const {id, date, quantity, timage, tourTotal, location} = tour
     console.log(id)
    
    
@@ -39,6 +39,7 @@ function CartDisplay({tour, res, traveler, onDeleteTour}) {
      
             <div className="details">
                 <p>Tour Date:- {date}</p>
+                <p>City:- {location}</p>
                 <p>Quantity:- {quantity} </p>
                 <p>Total:- ${tourTotal}</p> 
                 <Button color='pink'  onClick={removeTour}><h3>Delete Trip</h3></Button>

@@ -1,5 +1,21 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router";
+import { makeStyles } from '@material-ui/core/styles';
+import { Avatar, Button, Grid, Paper, Typography } from '@material-ui/core'
+import AssignmentIcon from '@material-ui/icons/Assignment';
+import { green } from "@material-ui/core/colors";
+import TextField from '@material-ui/core/TextField'
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+
+
+
+const useStyles = makeStyles((theme) => ({
+
+  paperStyle: {padding:25, height:'65Vh', width:'280', margin: "20px auto", backgroundColor: 'none'},
+  avatarStyle: {backgroundColor: '#17a2b8'},
+  styleBtn: {margin: '12px 0'}
+}))
+
 
 function SignUp( {setTraveler} ) {
   const [formData, setFormData] = useState({
@@ -52,51 +68,73 @@ function SignUp( {setTraveler} ) {
   }
 
   const { name, email, age, password } = formData;
+  const classes = useStyles();
 
   return (
-    <form onSubmit={handleSubmit}>
-      <h1>Signup</h1>
+    <Grid className={classes.paperStyle}>
+      <Paper elevation={10} className={classes.paperStyle}>
+            <Grid align='center'>
+          <Avatar className={classes.avatarStyle}><AssignmentIcon/></Avatar><br></br>
+            </Grid>
 
-      <label>Full Name</label>
-      <input
-        type="text"
-        name="name"
-        autoComplete="off"
-        value={name}
-        onChange={handleChange}
-      />
-      
-      <label>Email</label>
-      <input
-        type="text"
-        name="email"
-        autoComplete="off"
-        value={email}
-        onChange={handleChange}
-      />
+        <form onSubmit={handleSubmit}>
+          <h1>Signup</h1>
 
-      <label>Age</label>
-      <input
-        type="text"
-        name="age"
-        autoComplete="off"
-        value={age}
-        onChange={handleChange}
-      />
-    
-      <label>Password</label>
-      <input
-        type="password"
-        name="password"
-        autoComplete="current-password"
-        value={password}
-        onChange={handleChange}
-      />
-        {errors.map(error => <p style={{ color: 'red'}} key={error}>
-            {error}
-        </p>)}
-      <input type="submit" value="Signup" />
-    </form>
+          
+          <TextField className={classes.styleBtn}
+           id="filled-multiline-flexible"
+           label="Full Name"
+            type="text"
+            name="name"
+            autoComplete="off"
+            value={name}
+            onChange={handleChange}
+            variant="filled"
+          />
+          
+          
+          
+          <TextField className={classes.styleBtn}
+           id="filled-multiline-flexible"
+           label="Email"
+            type="text"
+            name="email"
+            autoComplete="off"
+            value={email}
+            onChange={handleChange}
+            variant="filled"
+          />
+
+          
+          <TextField className={classes.styleBtn}
+           id="filled-multiline-flexible"
+           label="Age"
+            type="text"
+            name="age"
+            autoComplete="off"
+            value={age}
+            onChange={handleChange}
+            variant="filled"
+          />
+        
+          
+          <TextField className={classes.styleBtn}
+           id="filled-multiline-flexible"
+           label="Password"
+            type="password"
+            name="password"
+            autoComplete="current-password"
+            value={password}
+            onChange={handleChange}
+            variant="filled"
+          />
+            {errors.map(error => <p style={{ color: 'red'}} key={error}>
+                {error}
+            </p>)}
+            <Button type='submit' color='primary' variant='contained' fullWidth className={classes.styleBtn}>Sign Up</Button>
+        </form>
+      </Paper>
+    </Grid>
   );
 }
 

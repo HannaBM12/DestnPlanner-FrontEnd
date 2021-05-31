@@ -8,6 +8,7 @@ import ReviewForm from './ReviewForm'
 import GuestReviews from "./GuestReviews";
 import MapGl from "./MapGl";
 import ReservationList from "./ReservationList";
+import StepperImage from "./StepperImage";
 
 
 function HotelDetail({traveler, checkIn, checkOut, nights, rooms, roomType }) {
@@ -173,7 +174,8 @@ function HotelDetail({traveler, checkIn, checkOut, nights, rooms, roomType }) {
     const reviews = hotelReview.map(review =>
       <GuestReviews key={review.id} review={review} />)
      
-    
+  
+
   return (
     <>
     
@@ -223,7 +225,9 @@ function HotelDetail({traveler, checkIn, checkOut, nights, rooms, roomType }) {
                   <Grid>
                     <Grid.Row>
                         <Grid.Column width={10}><br></br>
-                          <Image fluid src={image} alt={name} size='large' rounded verticalAlign='middle'/><br></br><br></br>
+                        <StepperImage />
+                          {/* <Image fluid src={image} alt={name} size='large' rounded verticalAlign='middle'/><br></br><br></br> */}
+                          <br/>
                           <strong><p>Covid-19 Measures</p></strong>
                           <ul>{covid}</ul>
                           <p><strong>Hotel Size:</strong> {hotelSize}</p>

@@ -36,7 +36,7 @@ export default function BottomBar({destination, setDestination, checkIn, setChec
                 <Form.Field>
                 <label><h3 style={{ color: 'teal'}}><strong>Find Your Next Hotel</strong></h3></label>
                 <br></br>
-                    <label>Destination City</label><br></br>
+                    <label>Destination City</label>
                     <input placeholder='Location' type="text" name="location" placeholder="Enter Destination" value={destination} onChange={(e)=>setDestination((e.target.value))}/><br></br><br></br>
                 </Form.Field>
                 <Form.Group unstackable widths={2}>

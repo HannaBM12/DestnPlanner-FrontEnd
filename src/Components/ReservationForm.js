@@ -3,14 +3,22 @@ import { useHistory } from 'react-router-dom'
 import { Button, Form } from 'semantic-ui-react'
 import HotelContainer from './HotelContainer';
 import HotelDetail from './HotelDetail';
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles((theme) => ({
+
+  paperStyle: {padding:15, height:'45Vh', width:'300', margin: "10px auto", backgroundColor: 'none'},
+
+}))
 
 
 function Reservation({dateIn, setDateIn, dateOut, setDateOut, night, setNight, room, setRoom, onHandleSubmit}){ 
 
-         
+  const classes = useStyles();
+
     return (
         <>
-              <Form  onSubmit={onHandleSubmit}><br></br>
+              <Form  onSubmit={onHandleSubmit} className={classes.paperStyle}><br></br>
                     <div><strong><h5>Check Availability</h5></strong></div><br></br>
                     <Form.Group unstackable widths={2}>
                       <Form.Input label='Check-In Date' placeholder='Check-In' type="date" name="date" min="2021-05-25" max="2022-12-31" placeholder="Check-In"value={dateIn} onChange={(e)=>setDateIn(e.target.value)}/><br></br>

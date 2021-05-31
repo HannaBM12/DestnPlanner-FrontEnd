@@ -2,6 +2,14 @@ import React from 'react'
 import styled from 'styled-components'
 import { Fragment } from 'react'
 import { Button, Form } from 'semantic-ui-react'
+import { makeStyles } from '@material-ui/core/styles';
+
+
+const useStyles = makeStyles((theme) => ({
+
+  paperStyle: {padding:15, height:'45Vh', width:'280', margin: "10px auto", backgroundColor: 'none'},
+  
+}))
 
 
 const RatingContainer = styled.div`
@@ -52,6 +60,7 @@ const RatingBoxTitle = styled.div`
 
 function ReviewForm ({setRating, onHandleSubmit, onHandleChange, name, title, description, setDescription, setTitle, score, setScore}){
 
+  const classes = useStyles();
     const ratingOptions = [5,4,3,2,1].map((rate, index) => {
         return (
           <>
@@ -64,7 +73,7 @@ function ReviewForm ({setRating, onHandleSubmit, onHandleChange, name, title, de
     return (
         
         <div className = 'wrapper'>
-            <Form onSubmit = {onHandleSubmit}> <br></br>
+            <Form onSubmit = {onHandleSubmit} className={classes.paperStyle}> <br></br>
             <div><h5> Review <strong style={{ color:'teal'}}>{name}</strong></h5></div> <br></br>
             <Form.Group unstackable widths={2}>
               <Form.Input label='Title' placeholder='Title' type='text' onChange={(e)=>setTitle(e.target.value)} type='text' name="title" value={title} placeholder="Review Title"/>

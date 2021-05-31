@@ -2,6 +2,14 @@ import React, { useEffect, useState } from "react";
 import { useParams } from 'react-router-dom'
 import { useHistory } from 'react-router-dom'
 import { Card, Icon, Rating, Form, Image, Container, Button, Label, TextArea, Grid, Search} from 'semantic-ui-react'
+import { makeStyles } from '@material-ui/core/styles';
+
+
+const useStyles = makeStyles((theme) => ({
+
+  paperStyle: {padding: 10, height:'40Vh', width:'280', margin: "15px auto", backgroundColor: 'none'},
+  
+}))
 
 
 function TourDetail({traveler}) {
@@ -14,6 +22,8 @@ function TourDetail({traveler}) {
     const history = useHistory();
 
     const { id } = useParams()
+
+    const classes = useStyles();
     
     useEffect(() => {
         fetch(`http://localhost:3000/tours/${id}`)
@@ -77,26 +87,27 @@ function TourDetail({traveler}) {
 
       <Grid>
         <Grid.Row>
-          <Grid.Column width={8}><br></br>
+          <Grid.Column width={12}><br></br>
             <Image src={timage} alt={name} />
           </Grid.Column>
-          <Grid.Column width={6}><br></br>
-            <div>
-            <h2 style={{ color: 'teal'}}>{name}</h2>
-            <p>{description}</p>
-            <p><strong>Location:</strong> {location}</p>
-            <p><strong>Price:</strong> ${tprice}</p>
-            </div>
+        </Grid.Row>
+        <Grid.Row>
+          <Grid.Column width={14}><br></br>
+            <h2 style={{ color: 'teal'}}><strong>{name}</strong></h2><br/>
+            <p><h5>{description}</h5></p>
+            <h5><p><strong>Location:</strong> {location}</p></h5>
+            <h5><p style={{ color: 'red'}}><strong>Price:</strong> ${tprice}</p></h5>
+
           </Grid.Column>
         </Grid.Row>
 
         <Grid.Row>
-          <Grid.Column width={8}> <br></br>
-          <h3>Explore More </h3><br></br>
-          <iframe width="430" height="250" src={video}>
+          <Grid.Column width={8}>
+          <h3 style={{ color: 'teal'}}><strong>Explore More</strong> </h3><br/>
+          <iframe width="430" height="275" src={video}>
               </iframe>
           </Grid.Column>
-          <Grid.Column width={6}> <br></br><br></br><br></br>
+          <Grid.Column width={6} className={classes.paperStyle}> <br/><br/>
              <Form onSubmit={handleSubmit}>
                     <label >Tour Date:</label>
                     <input type="date" name="date" min="2021-05-27" max="2022-12-31" placeholder="Tour date"value={date} onChange={(e)=>setDate(e.target.value)}/><br></br>

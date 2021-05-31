@@ -29,7 +29,7 @@ header {
 }
 
 header a,
-header button :hover {
+header button  {
   font-size: 1rem;
   display: inline-block;
   background-color:rgb(120, 199, 199);
@@ -60,12 +60,21 @@ main {
 }
 
 form {
-  background-color: lightgray;
-  /* border: 1px solid green; */
+  background-color: rgb(180, 206, 206);
+  border: 1px solid rgb(180, 206, 206);
   display: inline-flex;
   flex-direction: column;
   width: 400px;
-  margin: 10 auto;
+  margin: 20 auto;
+  padding:  1rem 1rem;
+}
+
+#login {
+  background-color: none;
+  display: inline-flex;
+  flex-direction: column;
+  width: 400px;
+  margin: 20 auto;
   padding:  1rem 1rem;
 }
 

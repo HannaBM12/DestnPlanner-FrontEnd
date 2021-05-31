@@ -6,7 +6,7 @@ import HotelDetail from './HotelDetail';
 import ReservationForm from './ReservationForm'
 
 
-function ReservationList({id, room, hotelName, avgScore, checkIn, checkOut, noOfNight, noOfRoom, total, image, price, onRemoveReservation, onHandleUpdate, tour}){ 
+function ReservationList({id, room, hotelName, avgScore, checkIn, checkOut, noOfNight, noOfRoom, total, image, price, location, onRemoveReservation, onHandleUpdate, tour}){ 
    
     const [isClicked, setIsClicked] = useState(true)
     const [newCheckIn, setNewCheckIn] = useState(checkIn)
@@ -79,11 +79,14 @@ function ReservationList({id, room, hotelName, avgScore, checkIn, checkOut, noOf
             <br></br>
             <strong><h4><p>Hotel:- {hotelName}</p></h4></strong>
             <strong><p style={{ color: 'darkorange'}}><h6>{avgRoundedScore} out of 5</h6></p></strong><br></br>
+            <div>
+            <p>City:- {location}</p>
             <p>Check-In:- {checkIn}</p>
             <p>Check-Out:- {checkOut}</p>
             <p>No Of Night:- {noOfNight}</p>
             <p>No Of Rooms:- {noOfRoom}</p>
             <strong><p style={{ color: 'red'}}>Total:- ${total}</p></strong><br></br>
+            </div>
 
 
         <Button color='pink' onClick={deleteReservation} ><h5>Cancel Reservation</h5></Button>
@@ -100,7 +103,7 @@ function ReservationList({id, room, hotelName, avgScore, checkIn, checkOut, noOf
                 <Form.Input label='Night' placeholder='No of Night' type="number" name="night" min="1" placeholder="nights" value={newNight} onChange={(e)=>setNewNight(parseInt((e.target.value)))}/>
                 <Form.Input label='Room' placeholder='No of Room' type="number" name="room" min="1" placeholder="rooms" value={newRoom} onChange={(e)=>setNewRoom(parseInt((e.target.value)))}/>
             </Form.Group>
-            <Button type ='submit' color='teal' floated='left'><h3>Update</h3></Button>
+            <Button type ='submit' color='teal' floated='left'><h3>Update</h3></Button> <br></br>
         </Form>
         }
        

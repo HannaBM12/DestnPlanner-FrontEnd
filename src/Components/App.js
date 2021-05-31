@@ -13,9 +13,16 @@ import Cart from "./Cart";
 import TourContainer from "./TourContainer";
 import TourDetail from "./TourDetail";
 import ReservationList from "./ReservationList";
-import { Layout } from './Layout';
-import { Jumbotron } from './Jumbotron';
+import { makeStyles } from '@material-ui/core/styles';
+import { Avatar, Button, Grid, Paper, Typography } from '@material-ui/core'
 import BottomBar from "./BottomBar";
+
+const useStyles = makeStyles((theme) => ({
+
+    style: {margin: "150px auto", backgroundColor: 'none', fontStyle: 'italic'},
+
+    
+  }))
 
 
 function App() {
@@ -59,6 +66,8 @@ function App() {
 
     }  
 
+    const classes = useStyles();
+
   return (
       <>
         <NavBar traveler={traveler} setTraveler={setTraveler}/>
@@ -78,7 +87,7 @@ function App() {
                         <Profile traveler={traveler} setTraveler={setTraveler}/>
                     ) : (
                     
-                        <h2>You must login to see this page!</h2>
+                        <h2 className={classes.style}>You must login to see this page!</h2>
                         
                     )}
                     
@@ -90,7 +99,10 @@ function App() {
                     {traveler ? (
                         <HotelDetail traveler={traveler} checkIn={checkIn} checkOut={checkOut} nights={nights} rooms={rooms}/>
                     ) : (
-                        <h2 style={{ color:'teal'}}><strong>Please login/SingUp, to see this page!</strong></h2>
+                        <Grid className={classes.style}>
+                            <h1 style={{ color:'teal'}}><strong>Please Login/SingUp, to see this page!</strong></h1><br></br>
+                            <h2 style={{ color:'teal'}}><strong><imp><span style={{ color:'black'}} >Destination</span> Planner</imp></strong></h2>
+                        </Grid>
                     )}
                 </Route>
                 <Route exact path="/hotelReservations">
