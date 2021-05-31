@@ -2,6 +2,7 @@ import React from "react";
 import { Link, useHistory } from "react-router-dom";
 import { Checkbox } from 'semantic-ui-react'
 import Search from './Search'
+import { Jumbotron } from './Jumbotron';
 
 function NavBar({ traveler, setTraveler }) {
 
@@ -15,7 +16,8 @@ function NavBar({ traveler, setTraveler }) {
   
   return (
     
-        <header>
+    <header>
+    
           <div>
             <Link to="/">Home</Link>
           </div>
@@ -42,6 +44,7 @@ function NavBar({ traveler, setTraveler }) {
             <Checkbox toggle/>
             
         </div>        
+     
         </header>
      
   );

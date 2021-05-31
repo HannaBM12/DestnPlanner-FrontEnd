@@ -178,7 +178,7 @@ function HotelDetail({traveler, checkIn, checkOut, nights, rooms, roomType }) {
     <>
     
         <div className="sidebar">
-            <br></br> <br></br>
+            <br/> <br/><br/>
           <MapGl hotelDetail={hotelDetail} />
             <br></br>  <br></br>  <br></br>
           <List>
@@ -217,6 +217,7 @@ function HotelDetail({traveler, checkIn, checkOut, nights, rooms, roomType }) {
         </div>
 
         <Container>
+                  <h2 style={{ color: 'teal'}}><strong> Welcome {traveler.name} </strong></h2>
                 <div className ='hotel-detail box'>
 
                   <Grid>

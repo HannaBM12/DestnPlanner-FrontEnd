@@ -13,7 +13,9 @@ import Cart from "./Cart";
 import TourContainer from "./TourContainer";
 import TourDetail from "./TourDetail";
 import ReservationList from "./ReservationList";
-
+import { Layout } from './Layout';
+import { Jumbotron } from './Jumbotron';
+import BottomBar from "./BottomBar";
 
 
 function App() {
@@ -60,8 +62,11 @@ function App() {
   return (
       <>
         <NavBar traveler={traveler} setTraveler={setTraveler}/>
-        <main>
-            <Switch>
+        {/* <Jumbotron> 
+        </Jumbotron> */}
+
+        <Switch>
+            <main>
                 <Route path="/signup">
                     <SignUp setTraveler={setTraveler} />
                 </Route>
@@ -102,14 +107,24 @@ function App() {
                 <Route exact path="/tours/:id">
                         <TourDetail traveler={traveler}/>
                 </Route>
+            
+
                 <Route exact path="/">
-                    <Home />
-                
-                    <HomeSearch destination={destination} setDestination={setDestination} checkIn={checkIn} setCheckIn={setCheckIn}
-                    checkOut={checkOut} setCheckOut={setCheckOut} nights={nights} setNights={setNights} rooms={rooms} setRooms={setRooms} onHandleSubmit={handleSubmit}/> 
+                <div class="parent">
+                    <div class="div1"> 
+                        <Home />
+                      
+                        <BottomBar destination={destination} setDestination={setDestination} checkIn={checkIn} setCheckIn={setCheckIn}
+                        checkOut={checkOut} setCheckOut={setCheckOut} nights={nights} setNights={setNights} rooms={rooms} setRooms={setRooms} onHandleSubmit={handleSubmit}/>
+
+                        {/* <HomeSearch destination={destination} setDestination={setDestination} checkIn={checkIn} setCheckIn={setCheckIn}
+                        checkOut={checkOut} setCheckOut={setCheckOut} nights={nights} setNights={setNights} rooms={rooms} setRooms={setRooms} onHandleSubmit={handleSubmit}/>  */}
+                                       
+                    </div>
+                </div>
                 </Route>
-            </Switch>
-        </main>
+                </main>
+        </Switch>
     </>
   );
 }

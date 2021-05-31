@@ -54,13 +54,14 @@ function HotelContainer({destination}) {
             
             return (
                 <>
-                <div className="sidebar">
+                <div className="sidebar"><br/>
                     <Sort setSortPrice={setSortPrice} setSortRating={setSortRating}/>
                     <SearchedLocation locationSearched={locationSearched} setLocationSearched= {setLocationSearched}/>
                 </div>
 
             
                 <div>
+                    <br/>
                     <Search  searchItem={searchItem} setSearchItem={setSearchItem}/><br></br><br></br>
                 
                     <Card.Group itemsPerRow={3}>
