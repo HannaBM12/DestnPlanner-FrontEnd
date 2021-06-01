@@ -4,9 +4,14 @@ import { Checkbox, Button } from 'semantic-ui-react'
 import Search from './Search'
 import { Jumbotron } from './Jumbotron';
 
-function NavBar({ traveler, setTraveler }) {
+function NavBar({ traveler, setTraveler, isDarkMode, setIsDarkMode}) {
 
   const history = useHistory()
+
+  function handleClick(event){
+    setIsDarkMode(!isDarkMode)
+}
+
 
   function logout(){
     localStorage.removeItem("token")
@@ -41,7 +46,7 @@ function NavBar({ traveler, setTraveler }) {
            )
            }
             <span></span><span></span>   
-            <Checkbox toggle/>
+            <Checkbox toggle onClick={handleClick}/>
             
         </div>        
      

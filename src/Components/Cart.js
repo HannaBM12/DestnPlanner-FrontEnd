@@ -25,13 +25,12 @@ function TotalReservation({traveler}) {
         .then(res => res.json())
         .then(travelerData => {
           console.log(travelerData)
-            // setHotelReservations(travelerData.reservations)
+            setHotelReservations(travelerData.reservations)
             setTourReservations(travelerData.tourReservations)
             setIsLoaded(true)
         })
     }, [])
 
-    // console.log(location)
     if (!isLoaded) return <h2>Loading...</h2>
        
    
@@ -47,7 +46,9 @@ function TotalReservation({traveler}) {
    const tourRes = tourReservations.map(tour=>
         <CartDisplay key={tour.id} tour = {tour} onDeleteTour={deleteTour}/>)
   
-        // console.log(hotelRes)
+  // const hotelRes = hotelReservations.map(hotel=>
+  //         <CartDisplay  hotel = {hotel} />)
+  //         // console.log(hotelRes)
 
     
   return (

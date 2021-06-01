@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
 
 function App() {
     const [traveler, setTraveler] = useState(null)
-
+    const [isDarkMode, setIsDarkMode] = useState(true)
     const [destination, setDestination] = useState('')
     const [checkIn, setCheckIn] = useState('')
     const [checkOut, setCheckOut] = useState('')
@@ -69,8 +69,8 @@ function App() {
     const classes = useStyles();
 
   return (
-      <>
-        <NavBar traveler={traveler} setTraveler={setTraveler}/>
+      <div className = {isDarkMode ? "App" : "App light"}>
+        <NavBar traveler={traveler} setTraveler={setTraveler} isDarkMode = {isDarkMode} setIsDarkMode ={setIsDarkMode}/>
         {/* <Jumbotron> 
         </Jumbotron> */}
 
@@ -137,7 +137,7 @@ function App() {
                 </Route>
                 </main>
         </Switch>
-    </>
+    </div>
   );
 }
 

@@ -6,8 +6,8 @@ import Reservation from "./ReservationForm";
 
 
 
-function CartDisplay({tour, res, traveler, onDeleteTour}) {
-    console.log(tour)
+function CartDisplay({tour, hotel, traveler, onDeleteTour}) {
+    // console.log(hotel)
     
     const {id, date, quantity, timage, tourTotal, location} = tour
     console.log(id)

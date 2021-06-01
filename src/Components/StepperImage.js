@@ -36,7 +36,7 @@ const HotelImage = [
   {
     label: 'Standard Room',
     imgPath:
-      'https://lh3.googleusercontent.com/proxy/BiVLontz6U9EjZdVMV6UqXmPgDxaPu2FL1kafFwMXBQZ_Xh28OVRWN9e2Eax0wxOuEC-_eqSBdzPXiTF-JN9PiegCfgGMoGU8yXAoOTsu8LQS3h1E8dW4urmL0iOK_R_PMoYlQc',
+      'https://i1.wp.com/www.turningleftforless.com/wp-content/uploads/2017/05/hotel-1979406_1920.jpg?zoom=2&resize=777%2C437',
   },
   {
     label: 'Standard Room',

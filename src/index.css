@@ -153,7 +153,7 @@ h1 {
   /* display: inline-flexbox; */
   background-size: inherit;
   height: 100vh;
-  color: #f5f5f5;
+  color: #a4bb3b;
 }
 .marker-btn {
   background: none;
@@ -219,3 +219,16 @@ main.parent {
   }
   
   .div1 { grid-area: 1 / 1 / 5 / 6; }
+
+  .App {
+    color: var(--color);
+    background-color: var(--background);
+    min-height: 100vh;
+  }
+  
+  .App.light {
+    --color: var(--black);
+    /* --background: var(--white); */
+    --background: #b6c9c8;
+    --primary: var(--mid-turquoise);
+  }
