@@ -101,7 +101,7 @@ function App() {
                     ) : (
                         <Grid className={classes.style}>
                             <h1 style={{ color:'teal'}}><strong>Please Login/SingUp, to see this page!</strong></h1><br></br>
-                            <h2 style={{ color:'teal'}}><strong><imp><span style={{ color:'black'}} >Destination</span> Planner</imp></strong></h2>
+                            <h2 style={{ color:'teal'}}><strong><span style={{ color:'black'}} >Destination</span> Planner</strong></h2>
                         </Grid>
                     )}
                 </Route>

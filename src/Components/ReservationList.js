@@ -68,17 +68,18 @@ function ReservationList({id, room, hotelName, avgScore, checkIn, checkOut, noOf
     const avgRoundedScore = Math.floor(avgScore*100)/100
     console.log(tour)
     // const {date, quantity, timage, tourTotal} = tour
+    const today = new Date()
          
     return (
         <>
             <br></br>
-       <div >
+       <div className="hotel-reservation">
             <img src={image} alt={hotelName} />
-       </div>
-       <div >
+      
+      
             <br></br>
             <strong><h4><p>Hotel:- {hotelName}</p></h4></strong>
-            <strong><p style={{ color: 'darkorange'}}><h6>{avgRoundedScore} out of 5</h6></p></strong><br></br>
+            <h6><strong><p style={{ color: 'darkorange'}}>{avgRoundedScore} out of 5</p></strong></h6><br></br>
             <div>
             <p>City:- {location}</p>
             <p>Check-In:- {checkIn}</p>
@@ -96,8 +97,8 @@ function ReservationList({id, room, hotelName, avgScore, checkIn, checkOut, noOf
         ):
         <Form  onSubmit={updateReservation}>
             <Form.Group unstackable widths={2}>
-                <Form.Input label='Check-In' placeholder='Check-In' type="date" name="date" min="2021-05-19" max="2022-12-31" placeholder="Check-In"value={newCheckIn} onChange={(e)=>setNewCheckIn(e.target.value)}/>
-                <Form.Input label='Check-Out' placeholder='Check-Out' type="date" name="date" min="2021-05-19" max="2022-12-31" placeholder="Check-Out"value={newCheckOut} onChange={(e)=>setNewCheckOut(e.target.value)}/>
+                <Form.Input label='Check-In' placeholder='Check-In' type="date" name="date" min={today} max="2022-12-31" placeholder="Check-In"value={newCheckIn} onChange={(e)=>setNewCheckIn(e.target.value)}/>
+                <Form.Input label='Check-Out' placeholder='Check-Out' type="date" name="date" min={today} max="2022-12-31" placeholder="Check-Out"value={newCheckOut} onChange={(e)=>setNewCheckOut(e.target.value)}/>
             </Form.Group>
             <Form.Group widths={2}>
                 <Form.Input label='Night' placeholder='No of Night' type="number" name="night" min="1" placeholder="nights" value={newNight} onChange={(e)=>setNewNight(parseInt((e.target.value)))}/>

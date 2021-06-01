@@ -29,10 +29,10 @@ header {
 }
 
 header a,
-header button  {
+header  button {
   font-size: 1rem;
   display: inline-block;
-  background-color:rgb(120, 199, 199);
+  background-color:none;
   border: 1px  black;
   margin: 1rem;
   padding: 1rem;
@@ -41,16 +41,8 @@ header button  {
   cursor: pointer;
 
 }
-/* .header {
-  background-size: cover;
-}
 
-.main-container {
-  margin-left: 150px;
-  margin-right: 150px;
-  color: white;
-  border-radius: 20px;
-} */
+
 main {
   margin: 0.5rem;
   display: flex;
@@ -178,10 +170,18 @@ h1 {
 .tour-container {
   max-width: 650em;
   /* margin: auto; */
-  margin-left:  10rem;
+  margin-left:  0rem;
 }
 
 .tour-container > div {
+  margin-left: 0px;
+  border-bottom: solid 2px grey;
+  padding-bottom: 1em;
+  min-width: 20em;
+}
+
+.hotel-reservation {
+  margin-left: 0px;
   border-bottom: solid 2px grey;
   padding-bottom: 1em;
   min-width: 20em;
