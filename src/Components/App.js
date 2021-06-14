@@ -122,7 +122,7 @@ function App() {
             
 
                 <Route exact path="/">
-                <div class="parent">
+                <div className="parent">
                     <div class="div1"> 
                         <Home />
                       

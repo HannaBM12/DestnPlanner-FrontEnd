@@ -47,7 +47,7 @@ function HotelDetail({traveler, checkIn, checkOut, nights, rooms, roomType }) {
       fetch(`http://localhost:3000/search/${hotelApiId}`)
       .then(res => res.json())
       .then(hotelDetail => {
-          console.log(hotelDetail.data.body.atAGlance.keyFacts.arrivingLeaving)
+          // console.log(hotelDetail.data.body.atAGlance.keyFacts.arrivingLeaving)
           setRequiredDocs(hotelDetail.data.body.atAGlance.keyFacts.arrivingLeaving)
           setPets(hotelDetail.data.body.atAGlance.travellingOrInternet.travelling.pets[0])
           setHotelSize(hotelDetail.data.body.atAGlance.keyFacts.hotelSize[0])
@@ -238,7 +238,7 @@ function HotelDetail({traveler, checkIn, checkOut, nights, rooms, roomType }) {
                           <h3 style={{ color:'teal'}}><strong>{name}</strong></h3> <br></br>
                           <p><strong>Guest Reviews: <span style={{ color: 'darkorange'}}>#{guestReviews}</span>,<span></span>  Rating: <span style={{ color: 'darkorange'}}>{guestRating}/10</span></strong> </p>
                           { score ? (
-                            <p><strong>Star:</strong> <strong style={{ color: 'darkorange'}}>{avg} out of 5</strong> </p>
+                            <p><strong>Star:</strong> <strong style={{ color: 'darkorange'}}>{avgRoundedScore} out of 5</strong> </p>
                             ):(
                               <p><strong>Star:</strong> <strong style={{ color: 'darkorange'}}>{avgRoundedScore} out of 5</strong> </p>
                           )

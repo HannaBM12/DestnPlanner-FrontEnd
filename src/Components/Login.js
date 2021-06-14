@@ -75,7 +75,7 @@ function Login({ setTraveler}) {
 
             {/* <label>Email</label> */}<br></br>
             <TextField
-              id="filled-multiline-flexible"
+              id="filled"
               name="email"
               label="Email"
               autoComplete="off"
@@ -87,7 +87,7 @@ function Login({ setTraveler}) {
             <br></br>
             {/* <label>Password</label> */}
             <TextField
-              id="filled-multiline-flexible"
+              id="multiline"
               rowsMax={1}
               name="password"
               type="password"
@@ -114,9 +114,9 @@ function Login({ setTraveler}) {
             <Button type='submit' color='primary' variant='contained' fullWidth className={classes.styleBtn}>Login</Button>
           </form> 
           <br></br> <br></br>
-          <Typography className={classes.styleBtn}> <h5>Do you have an account?
+          <Typography className={classes.styleBtn}> Do you have an account?
             <Link to="/signup"> Sign Up 
-            </Link> </h5>
+            </Link>
           </Typography>
       </Paper>
     </Grid>

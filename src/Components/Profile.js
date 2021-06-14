@@ -59,7 +59,7 @@ function Profile( {traveler, setTraveler} ) {
                         <h2>{traveler.name}'s Profile</h2>
 
                       <TextField  className={classes.styleBtn}
-                          id="filled-multiline-flexible"
+                          id="profile-email"
                           type="text"
                           name="email"
                           label="Email"
@@ -70,7 +70,7 @@ function Profile( {traveler, setTraveler} ) {
                         />
                         
                       <TextField className={classes.styleBtn}
-                        id="filled-multiline-flexible"
+                        id="profile-age"
                         label="Age"
                         name="age" 
                         value={age} 

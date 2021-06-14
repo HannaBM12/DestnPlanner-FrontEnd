@@ -82,7 +82,7 @@ function SignUp( {setTraveler} ) {
 
           
           <TextField className={classes.styleBtn}
-           id="filled-multiline-flexible"
+           id="name"
            label="Full Name"
             type="text"
             name="name"
@@ -95,7 +95,7 @@ function SignUp( {setTraveler} ) {
           
           
           <TextField className={classes.styleBtn}
-           id="filled-multiline-flexible"
+           id="email"
            label="Email"
             type="text"
             name="email"
@@ -107,7 +107,7 @@ function SignUp( {setTraveler} ) {
 
           
           <TextField className={classes.styleBtn}
-           id="filled-multiline-flexible"
+           id="age"
            label="Age"
             type="text"
             name="age"
@@ -119,7 +119,7 @@ function SignUp( {setTraveler} ) {
         
           
           <TextField className={classes.styleBtn}
-           id="filled-multiline-flexible"
+           id="password"
            label="Password"
             type="password"
             name="password"
