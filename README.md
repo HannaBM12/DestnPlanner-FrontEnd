@@ -18,7 +18,6 @@ From this page he can also add city tour and see tour options at his current cit
 
 To style this App I used Sematic UI and Material UI.
 
-This app is currently tested on IOS.
 
 Contact Info:
 Name: Hanna Mulugeta Email: Hannabmulugeta@gmail.com Linkedin: https://www.linkedin.com/in/hanna-mulugeta-720685195/
