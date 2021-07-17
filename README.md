@@ -1,70 +1,24 @@
-# Getting Started with Create React App
+Project Name: Destination Planner.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Project Overview: This is my Final Capstone project at Flatiron School. It was designed to help travelers arrange their hotel and tour reservations at their destinations. I got inspired to build this app from my previous work experience. I used to work in airline industry and assisted passengers with their flight, hotel and tour accommodation.
 
-## Available Scripts
+To build this app I used rails for the backend and react for the frontend. In addition I used Rapid API to seed my database and bring real time hotel information in to the App, Mapbox GL to locate each hotel on a map and JWT to authenticate each user. The backend is currently running on http://localhost:3000/ and the frontend on http://localhost:3006/
 
-In the project directory, you can run:
+Dependency Files : "@material-ui/core": "^4.11.4", "@material-ui/icons": "^4.11.2", "@testing-library/jest-dom": "^5.11.4", "@testing-library/react": "^11.1.0", "@testing-library/user-event": "^12.1.10", "bootstrap": "^4.6.0", "classnames": "^2.3.1", "react": "^17.0.2", "react-bootstrap": "^1.6.0", "react-dom": "^17.0.2", "react-map-gl": "^6.1.15", "react-router-dom": "^5.2.0", "react-scripts": "4.0.3", "react-scroll": "^1.8.2", "react-swipeable-views": "^0.14.0", "semantic-ui-css": "^2.4.1", "semantic-ui-react": "^2.0.3", "styled-components": "^5.3.0", "web-vitals": "^1.0.1"
 
-### `yarn start`
+I used react router to navigate between the pages, and when the user first land into the page, Before login/singup, he can see list of hotel information by going to hotels tab or use the search bar at the home page and search for a hotel at his/her destination.
 
-Runs the app in the development mode.\
-Open [http://localhost:3006](http://localhost:3006) to view it in the browser.
+Once the hotel is displayed he can sort by price/star rating, he can also search by hotel name/location. But to request more information about a hotel he should login/singup.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Once inside the traveler can see detail information about the hotel like, room types, nearby airports, distance from the city center, current Covid-19 measures, if pets are allowed or not, check-in/out times, amenities etc... if he decided to book there is an option for him to make reservations by submitting his check-in and out dates, no of rooms and nights. He can also submit his hotel reviews.
 
-### `yarn test`
+upon reserving a hotel he will be redirected to his reservations summary page where he can see current and past reservations. There is an option for him to cancel/update his reservations.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+From this page he can also add city tour and see tour options at his current city. He can book a city tour and also cancel his current or previous tours.
 
-### `yarn build`
+To style this App I used Sematic UI and Material UI.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+This app is currently tested on IOS.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Contact Info:
+Name: Hanna Mulugeta Email: Hannabmulugeta@gmail.com Linkedin: https://www.linkedin.com/in/hanna-mulugeta-720685195/
